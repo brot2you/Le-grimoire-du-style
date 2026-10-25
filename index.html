@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Grimoire du Style — Quest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --leather:#241811;
+  --leather-dark:#160e09;
+  --parchment:#f3e8cc;
+  --parchment-dark:#e6d6a8;
+  --gold:#c9a44c;
+  --gold-dark:#93712c;
+  --ink:#2b1d0e;
+  --ink-soft:#5a4526;
+  --success:#4f7942;
+  --danger:#a5342a;
+  --c-analogie:#7a5c3e;
+  --c-insistance:#b23a48;
+  --c-opposition:#4a6fa5;
+  --c-substitution:#4f7942;
+  --c-sonore:#8e5b9e;
+  --radius:2px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--parchment);
+  background-image:
+    radial-gradient(ellipse at top, rgba(201,164,76,0.10), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(90,69,38,0.05) 0px, rgba(90,69,38,0.05) 1px, transparent 1px, transparent 26px);
+  color:var(--ink);
+  font-family:'EB Garamond', serif;
+  min-height:100vh;
+}
+::selection{background:var(--gold);color:var(--leather);}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px;}
+header.hero{
+  background:var(--leather);
+  background-image:radial-gradient(ellipse at top, rgba(201,164,76,0.14), transparent 65%);
+  color:var(--parchment);
+  padding:38px 20px 30px;
+  text-align:center;
+  margin:0 -24px 26px;
+  border-bottom:3px solid var(--gold-dark);
+}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  letter-spacing:0.26em;
+  text-transform:uppercase;
+  font-size:11px;
+  font-weight:600;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+h1.title{
+  font-family:'Cinzel', serif;
+  font-weight:700;
+  font-size:36px;
+  margin:0 0 10px;
+  color:var(--parchment);
+  line-height:1.2;
+  text-shadow:0 0 18px rgba(201,164,76,0.35);
+}
+.subtitle{
+  font-size:15.5px;
+  font-style:italic;
+  max-width:540px;
+  margin:0 auto;
+  color:var(--parchment-dark);
+}
+.hud{display:flex;justify-content:center;gap:22px;margin-top:22px;flex-wrap:wrap;}
+.hud-item{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;font-weight:600;
+  color:var(--parchment);
+  border:1px solid rgba(201,164,76,0.4);
+  padding:6px 12px;
+  border-radius:var(--radius);
+  background:rgba(0,0,0,0.2);
+}
+.hud-item b{color:var(--gold);font-size:14px;}
+.dys-toggle{cursor:pointer;font-family:'IBM Plex Mono', monospace;}
+.dys-toggle.active{background:var(--gold);border-color:var(--gold);color:var(--leather);font-weight:700;}
+
+.level-row{display:flex;justify-content:center;gap:6px;margin-top:16px;flex-wrap:wrap;}
+.level-pill{
+  font-family:'IBM Plex Mono', monospace;font-size:11px;font-weight:600;letter-spacing:0.04em;
+  color:var(--parchment);
+  background:rgba(0,0,0,0.2);
+  border:1px solid rgba(201,164,76,0.4);
+  padding:6px 13px;border-radius:14px;cursor:pointer;
+}
+.level-pill.active{background:var(--gold);border-color:var(--gold);color:var(--leather);}
+
+nav.cats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 20px;}
+.cat-tab{
+  font-family:'IBM Plex Mono', monospace;font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+  color:var(--ink);
+  background:#fff;
+  border:1px solid rgba(90,69,38,0.3);
+  padding:9px 14px;border-radius:var(--radius);cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+}
+.cat-tab .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.cat-tab.active{color:#fff;font-weight:700;}
+.cat-tab .count{font-size:10px;opacity:0.85;background:rgba(90,69,38,0.10);padding:1px 6px;border-radius:8px;}
+.cat-tab.active .count{background:rgba(255,255,255,0.28);}
+
+.legend-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0 0 22px;}
+.legend-chip{font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.03em;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px;}
+.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+
+.cat-heading{text-align:center;margin-bottom:22px;}
+.cat-heading h2{font-family:'Cinzel', serif;font-weight:700;font-size:23px;margin:0 0 6px;color:var(--ink);}
+.cat-heading p{font-size:14px;font-style:italic;color:var(--ink-soft);margin:0;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));gap:14px;}
+.card{
+  background:#fff;color:var(--ink);border-radius:var(--radius);padding:16px 16px 14px;cursor:pointer;position:relative;
+  border:1px solid var(--parchment-dark);border-left:4px solid var(--gold-dark);
+  box-shadow:0 1px 0 rgba(0,0,0,0.10);
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,0.16);}
+.card .catpill{display:inline-block;font-family:'IBM Plex Mono', monospace;font-size:10px;font-weight:700;letter-spacing:0.04em;color:#fff;padding:2px 8px;border-radius:10px;margin-bottom:8px;text-transform:uppercase;}
+.card h3{font-family:'Cinzel', serif;font-size:17px;margin:0 0 8px;font-weight:700;color:var(--ink);}
+.card p{font-size:13.5px;color:var(--ink-soft);margin:0;line-height:1.4;font-style:italic;}
+.card .lvl-badge{position:absolute;top:12px;right:12px;font-family:'IBM Plex Mono', monospace;font-size:9.5px;font-weight:700;color:var(--ink);background:rgba(90,69,38,0.10);padding:2px 7px;border-radius:9px;}
+.card .done{position:absolute;top:34px;right:12px;width:9px;height:9px;border-radius:50%;background:var(--success);box-shadow:0 0 0 3px rgba(79,121,66,0.18);}
+.empty-msg{grid-column:1/-1;text-align:center;font-size:13px;color:var(--ink-soft);padding:30px 10px;}
+
+.overlay{position:fixed;inset:0;background:rgba(22,14,9,0.6);display:none;align-items:flex-start;justify-content:center;padding:26px 14px;overflow-y:auto;z-index:50;}
+.overlay.show{display:flex;}
+.panel{background:var(--parchment);color:var(--ink);max-width:640px;width:100%;border-radius:var(--radius);overflow:hidden;margin:auto;}
+.panel-head{background:var(--leather);color:var(--parchment);padding:18px 22px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+.panel-head .tag{font-family:'IBM Plex Mono', monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.panel-head h2{font-family:'Cinzel', serif;font-weight:700;font-size:22px;margin:0;}
+.close-btn{background:none;border:1px solid rgba(201,164,76,0.4);color:var(--parchment);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;flex:none;}
+.close-btn:hover{border-color:var(--gold);color:var(--gold);}
+.panel-body{padding:22px;}
+.section-label{font-family:'IBM Plex Mono', monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dark);margin:0 0 8px;display:flex;align-items:center;gap:8px;}
+.section-label:before{content:"";flex:1;height:1px;background:var(--parchment-dark);order:2;}
+.def-text{font-size:15px;line-height:1.6;margin:0 0 20px;}
+
+.style-sheet{
+  background:#fff;border:1px solid var(--parchment-dark);border-radius:var(--radius);padding:22px 20px 16px;margin-bottom:16px;
+  background-image:repeating-linear-gradient(0deg, rgba(90,69,38,0.05) 0, rgba(90,69,38,0.05) 1px, transparent 1px, transparent 24px);
+}
+.style-sentence{display:flex;flex-wrap:wrap;align-items:flex-start;row-gap:10px;font-family:'EB Garamond', serif;font-style:italic;font-size:20px;line-height:1.6;}
+.tok{display:inline-flex;flex-direction:column;align-items:center;margin:0 3px 0 0;}
+.tok .word{white-space:nowrap;padding:2px 3px;border-radius:3px;}
+.tok.clickable .word{cursor:pointer;border:1.5px dashed transparent;}
+.tok.clickable:hover .word{border-color:var(--gold-dark);}
+.tok.picked .word{background:rgba(201,164,76,0.28);border-color:var(--gold-dark);}
+.tok.res-correct .word{background:rgba(79,121,66,0.24);border:1.5px solid var(--success);}
+.tok.res-missed .word{border:1.5px dashed var(--danger);}
+.tok.res-wrong .word{background:rgba(165,52,42,0.16);border:1.5px solid var(--danger);}
+
+.observe-q{font-size:13.5px;color:var(--ink-soft);margin:0 0 14px;line-height:1.5;}
+.hint-btn{
+  display:block;
+  margin:0 0 14px;
+  background:rgba(201,164,76,0.14);
+  color:var(--gold-dark);
+  border:1px dashed var(--gold-dark);
+  padding:9px 14px;
+  border-radius:var(--radius);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:0.04em;
+  cursor:pointer;
+}
+.hint-btn:hover{background:rgba(201,164,76,0.26);}
+.hint-btn[disabled]{cursor:default;opacity:0.6;}
+.hint-box{margin-bottom:6px;}
+.hint-box .step-msg{margin-bottom:8px;}
+.reveal-btn{width:100%;background:#fff;color:var(--ink);border:1.5px dashed var(--leather);padding:12px;border-radius:var(--radius);font-family:'IBM Plex Mono', monospace;font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;margin-bottom:6px;}
+.reveal-btn:hover{background:var(--leather);color:var(--parchment);}
+.reveal-btn[disabled]{cursor:default;background:var(--parchment-dark);border-style:solid;color:var(--ink-soft);}
+.step-zone{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease, opacity .3s ease, margin .4s ease;}
+.step-zone.show{max-height:1400px;opacity:1;margin-top:20px;}
+.step-result{margin-top:10px;}
+.step-msg{font-size:13px;background:var(--parchment-dark);padding:10px 12px;border-radius:var(--radius);margin:0;color:var(--ink-soft);}
+
+.astuce{background:rgba(201,164,76,0.14);border-left:3px solid var(--gold-dark);padding:12px 14px;font-size:13.5px;line-height:1.5;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:12px;}
+.astuce b{color:var(--gold-dark);}
+.mnemo-box{background:rgba(74,111,165,0.10);border-left:3px solid var(--c-opposition);padding:12px 14px;font-size:13.5px;line-height:1.5;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:14px;}
+.mnemo-box b{color:var(--c-opposition);}
+
+.quiz-btn{margin-top:6px;width:100%;background:var(--leather);color:var(--parchment);border:none;padding:13px;border-radius:var(--radius);font-family:'IBM Plex Mono', monospace;font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;}
+.quiz-btn:hover{background:var(--gold-dark);}
+.defi-btn{margin-top:10px;width:100%;background:#fff;color:var(--gold-dark);border:1.5px solid var(--gold-dark);padding:12px;border-radius:var(--radius);font-family:'IBM Plex Mono', monospace;font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;}
+.defi-btn:hover{background:var(--gold-dark);color:#fff;}
+
+.quiz-q{margin-bottom:18px;}
+.quiz-q .qtext{font-size:14.5px;font-weight:600;margin-bottom:12px;font-family:'EB Garamond',serif;}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--parchment-dark);padding:10px 12px;margin-bottom:8px;border-radius:var(--radius);font-size:14px;cursor:pointer;font-family:'EB Garamond', serif;color:var(--ink);}
+.opt:hover{border-color:var(--c-opposition);}
+.opt.correct{background:rgba(79,121,66,0.18);border-color:var(--success);}
+.opt.wrong{background:rgba(165,52,42,0.14);border-color:var(--danger);}
+.opt[disabled]{cursor:default;}
+.explication{font-size:13px;color:var(--ink-soft);background:var(--parchment-dark);padding:10px 12px;border-radius:var(--radius);margin-top:6px;display:none;}
+.explication.show{display:block;}
+.quiz-result{text-align:center;padding:20px 10px 6px;}
+.quiz-result .score{font-family:'Cinzel', serif;font-size:30px;color:var(--ink);}
+.quiz-result p{font-size:13px;color:var(--ink-soft);}
+
+.finalquiz-launch{margin:36px auto 10px;text-align:center;}
+.launch-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.finalquiz-btn{background:var(--gold-dark);color:#fff;border:none;font-family:'IBM Plex Mono', monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;padding:14px 26px;border-radius:var(--radius);cursor:pointer;}
+.finalquiz-btn:hover{background:var(--leather);}
+.mnemo-btn{background:#fff;color:var(--leather);border:1.5px solid var(--leather);font-family:'IBM Plex Mono', monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;padding:14px 22px;border-radius:var(--radius);cursor:pointer;}
+.mnemo-btn:hover{background:var(--leather);color:#fff;}
+.progress-bar-wrap{max-width:420px;margin:0 auto 4px;height:6px;background:rgba(90,69,38,0.12);border-radius:4px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:var(--gold-dark);width:0%;transition:width .3s ease;}
+
+.badges-row{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.badge{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;border:1.5px solid rgba(90,69,38,0.3);background:#fff;filter:grayscale(1);opacity:0.4;}
+.badge.unlocked{filter:none;opacity:1;border-color:var(--gold-dark);background:rgba(201,164,76,0.16);}
+
+.mnemo-list-item{background:#fff;border:1px solid var(--parchment-dark);border-radius:var(--radius);padding:12px 14px;margin-bottom:10px;}
+.mnemo-list-item .mli-title{font-weight:700;font-size:13.5px;color:var(--ink);margin-bottom:4px;font-family:'Cinzel',serif;}
+.mnemo-list-item .mli-text{font-size:13.5px;line-height:1.5;color:var(--ink-soft);}
+
+.defi-box{background:#fff;border:1px solid var(--parchment-dark);border-radius:var(--radius);padding:16px;margin-top:6px;}
+.defi-box .defi-starter{font-style:italic;font-size:15px;margin-bottom:10px;padding:8px 10px;background:var(--parchment-dark);border-radius:var(--radius);}
+.defi-box textarea{width:100%;min-height:80px;border:1px solid var(--parchment-dark);border-radius:var(--radius);padding:10px;font-family:'EB Garamond', serif;font-size:14.5px;resize:vertical;color:var(--ink);}
+.defi-box .defi-crit{margin-top:10px;font-size:13px;color:var(--ink-soft);}
+.defi-box .defi-crit label{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer;}
+.defi-save{margin-top:10px;background:var(--gold-dark);color:#fff;border:none;padding:9px 16px;border-radius:var(--radius);font-family:'IBM Plex Mono', monospace;font-size:11.5px;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;}
+.defi-saved-msg{font-size:11.5px;color:var(--success);font-family:'IBM Plex Mono', monospace;margin-left:10px;display:none;}
+
+footer{text-align:center;font-family:'IBM Plex Mono', monospace;font-size:10.5px;color:var(--ink-soft);letter-spacing:0.06em;margin-top:50px;padding-top:20px;border-top:1px solid rgba(90,69,38,0.2);}
+
+body.dys-mode, body.dys-mode .card, body.dys-mode .panel, body.dys-mode .style-sheet, body.dys-mode .opt, body.dys-mode .defi-box textarea{font-family:'Lexend', sans-serif;font-style:normal;}
+body.dys-mode h1.title, body.dys-mode .cat-heading h2, body.dys-mode .panel-head h2, body.dys-mode .quiz-result .score, body.dys-mode .card h3, body.dys-mode .mli-title{font-family:'Lexend', sans-serif;font-weight:700;}
+body.dys-mode{background-image:none;}
+body.dys-mode *{font-style:normal !important;}
+body.dys-mode .card, body.dys-mode .style-sheet{background:var(--parchment) !important;background-image:none !important;}
+body.dys-mode .def-text, body.dys-mode .card p, body.dys-mode .mnemo-box, body.dys-mode .astuce, body.dys-mode .mli-text, body.dys-mode .hint-box .step-msg{font-weight:500;}
+body.dys-mode .opt.correct:before{content:"✓ ";font-weight:700;}
+body.dys-mode .opt.wrong:before{content:"✗ ";font-weight:700;}
+body.dys-mode .def-text, body.dys-mode .card p, body.dys-mode .mnemo-box, body.dys-mode .astuce, body.dys-mode .subtitle, body.dys-mode .observe-q, body.dys-mode .step-msg, body.dys-mode .qtext, body.dys-mode .opt, body.dys-mode .mli-text{line-height:1.85;letter-spacing:0.012em;word-spacing:0.1em;font-style:normal;}
+body.dys-mode .def-text, body.dys-mode .opt, body.dys-mode .qtext{font-size:15.5px;}
+body.dys-mode .style-sentence{font-size:19px;font-style:normal;row-gap:16px;}
+
+@media (max-width:520px){
+  h1.title{font-size:27px;}
+  .grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:400px){
+  .grid{grid-template-columns:1fr;}
+}
+
+/* GRIMOIRE QUEST V2 — visual refresh, accessible on mobile */
+:root{--leather:#21143f;--leather-dark:#160e30;--parchment:#f6f4ff;--parchment-dark:#e5def9;--gold:#ffd478;--gold-dark:#8052c4;--ink:#23183f;--ink-soft:#5c5577;--radius:17px;--c-analogie:#8059d9;--c-insistance:#e45587;--c-opposition:#3e83d0;--c-substitution:#159c84;--c-sonore:#a25ed0}
+body{background:#f6f4ff;background-image:radial-gradient(circle at 10% 6%,#eadbff 0,transparent 32%),radial-gradient(circle at 90% 25%,#d9f3fb 0,transparent 30%);font-family:'Lexend',sans-serif}
+.wrap{max-width:1160px;padding:0 20px 80px}
+header.hero{background:linear-gradient(120deg,#251348,#4d2d85 56%,#19598a);margin:0 -20px 22px;padding:28px 24px 34px;border-bottom:5px solid #e6ba68;border-radius:0 0 32px 32px;box-shadow:0 14px 36px #27144722;position:relative;overflow:hidden}
+header.hero:after{content:'✦   ✧    ✦     ✧   ✦';position:absolute;right:-25px;top:35px;transform:rotate(-18deg);font-size:36px;color:#ffffff2a;pointer-events:none}
+.eyebrow{font-family:'Lexend',sans-serif;font-size:11px;letter-spacing:.17em;color:#ffe2a3}
+h1.title{font-family:'Cinzel',serif;font-size:clamp(31px,5vw,49px);color:#fff3c9;text-shadow:0 3px 0 #160c32,0 7px 20px #100622}
+.subtitle{font-family:'Lexend',sans-serif;font-size:13px;font-style:normal;color:#efe8ff}
+.hud{gap:9px}.hud-item{font-family:'Lexend',sans-serif;font-size:11px;border-radius:100px;background:#ffffff17;border-color:#ffffff55;padding:9px 14px}.hud-item b{color:#ffe19b}
+.level-pill{font-family:'Lexend',sans-serif;border-radius:100px;font-size:12px}.level-pill.active{color:#261242;background:#ffe19b}
+.quest-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr);gap:16px;margin-bottom:24px}
+.quest-welcome{background:linear-gradient(125deg,#49318b,#7351be);color:#fff;border-radius:24px;padding:24px 25px;display:flex;align-items:center;gap:18px;box-shadow:0 12px 28px #35216322}
+.quest-mascot{flex:none;font-size:72px;filter:drop-shadow(0 7px 0 #26124a45)}
+.quest-welcome h2{font-family:'Cinzel',serif;margin:0 0 8px;font-size:22px;color:#ffe8a5}.quest-welcome p{font-size:13px;line-height:1.55;margin:0 0 14px;color:#f1eaff}
+.quest-cta,.quest-secondary{font-family:'Lexend',sans-serif;border:0;border-radius:13px;font-weight:700;cursor:pointer;padding:12px 16px;font-size:13px}
+.quest-cta{background:#ffda71;color:#2d2051;box-shadow:0 4px 0 #c18f39}.quest-cta:hover{filter:brightness(1.08)}
+.quest-side{background:#fff;border:2px solid #e6d9ff;border-radius:24px;padding:21px;box-shadow:0 8px 24px #36245e0d}
+.quest-side h3{margin:0 0 10px;color:#4a327d;font-size:17px}.quest-side p{color:#645d7b;font-size:12px;line-height:1.55;margin:0 0 13px}
+.quest-secondary{background:#e9defe;color:#4d3082;width:100%}
+.quest-lands-title{font-family:'Cinzel',serif;font-size:22px;color:#382463;margin:10px 0 13px;text-align:center}
+.quest-lands{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin:0 0 22px}
+.quest-land{border:2px solid #ffffff80;border-radius:19px;color:white;padding:14px 9px 13px;min-height:122px;text-align:center;cursor:pointer;box-shadow:0 5px 0 #32234f1c;transition:transform .2s,filter .2s}
+.quest-land:hover{transform:translateY(-4px);filter:saturate(1.15)}.quest-land .land-icon{display:block;font-size:36px;margin-bottom:5px;filter:drop-shadow(0 3px 2px #0002)}.quest-land b{display:block;font-size:12px;line-height:1.25}.quest-land small{display:block;font-size:10px;margin-top:7px;color:#fff9}
+nav.cats{gap:7px;margin-bottom:18px}.cat-tab{font-family:'Lexend',sans-serif;letter-spacing:0;text-transform:none;font-size:11px;border-radius:12px;background:#fff;padding:10px 11px}
+.legend-row{display:none}.cat-heading h2{font-family:'Cinzel',serif;color:#392566}.cat-heading p{font-family:'Lexend',sans-serif;font-style:normal;font-size:12px}
+.grid{grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:16px}.card{border:2px solid #e7ddfa;border-left:2px solid #e7ddfa!important;border-radius:19px;min-height:168px;box-shadow:0 6px 0 #ddd2ef99;transition:transform .2s,box-shadow .2s;padding:18px}.card:hover{transform:translateY(-5px);box-shadow:0 10px 17px #38265a22}.card:before{content:'✦';position:absolute;right:18px;bottom:10px;font-size:32px;color:#dac4ff}.card h3{font-family:'Cinzel',serif;font-size:16px}.card p{font-family:'Lexend',sans-serif;font-style:normal;font-size:11px;line-height:1.6;max-width:91%}.card .catpill{font-family:'Lexend',sans-serif;font-size:9px;padding:5px 9px}.card .lvl-badge{font-family:'Lexend',sans-serif;top:15px;right:14px}
+.panel{border-radius:23px;box-shadow:0 24px 70px #10092a88}.panel-head{background:linear-gradient(120deg,#402278,#21598c);padding:21px}.panel-head h2{font-size:23px}.panel-body{padding:23px}.section-label,.observe-q,.step-msg,.astuce,.mnemo-box,.defi-box,.qtext,.opt,.explication{font-family:'Lexend',sans-serif}.section-label{color:#6841a7}.style-sheet,.opt,.defi-box,.mnemo-list-item{border-radius:13px}.style-sentence{font-size:20px}.reveal-btn,.quiz-btn,.defi-btn,.hint-btn,.finalquiz-btn,.mnemo-btn{border-radius:12px;font-family:'Lexend',sans-serif;letter-spacing:0}.reveal-btn,.quiz-btn{background:#4e328d;color:white}.finalquiz-launch{background:#fff;border:2px solid #e9defb;border-radius:24px;padding:27px 15px;margin-top:34px}.finalquiz-btn{background:#633bb0}.badge{border-radius:14px;width:49px;height:49px}.badge.unlocked{background:#fff2c8}
+body.dys-mode .quest-welcome,body.dys-mode .quest-side{font-family:'Lexend',sans-serif}
+@media(max-width:750px){.quest-intro{grid-template-columns:1fr}.quest-lands{grid-template-columns:repeat(3,minmax(0,1fr))}.quest-welcome{padding:20px}.quest-mascot{font-size:53px}}
+@media(max-width:460px){.quest-lands{grid-template-columns:repeat(2,minmax(0,1fr))}.quest-welcome{gap:12px}.quest-mascot{font-size:43px}.quest-welcome h2{font-size:18px}.quest-welcome p{font-size:11px}.grid{grid-template-columns:1fr 1fr;gap:10px}.card{min-height:174px;padding:12px}.card h3{font-size:13px}.card p{font-size:10px}.card .lvl-badge{right:7px;top:9px}.card .catpill{font-size:8px;max-width:105px}.card:before{font-size:21px}}
+@media(max-width:360px){.grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Grimoire de style — français collège</div>
+    <h1 class="title">Le Grimoire du Style</h1>
+    <p class="subtitle">18 figures de style à repérer, comprendre et invoquer dans tes propres textes. 6e à 3e.</p>
+    <div class="hud">
+      <div class="hud-item">Fiches lues : <b id="hud-read">0</b>/18</div>
+      <div class="hud-item">Quiz réussis : <b id="hud-quiz">0</b>/18</div>
+      <div class="hud-item">XP : <b id="hud-xp">0</b></div>
+      <button class="hud-item dys-toggle" id="dysToggle" type="button">👁 Mode DYS</button>
+    </div>
+    <div class="level-row" id="levelRow"></div>
+  </header>
+
+  <section class="quest-intro" aria-label="Commencer l’aventure">
+<div class="quest-welcome"><div class="quest-mascot" aria-hidden="true">🧙‍♂️</div><div><h2>Bienvenue, apprenti mage !</h2><p>Les mots ont perdu leur magie. Explore les cinq royaumes, reconnais les figures de style et collectionne tes pouvoirs !</p><button class="quest-cta" id="quickMission">⚡ Mission surprise · 5 questions</button></div></div>
+<div class="quest-side"><h3>🎒 Ton carnet d'aventurier</h3><p id="questStatus">Tes sorts maîtrisés et ton prochain objectif apparaîtront ici.</p><button class="quest-secondary" id="nextSpell">✨ Découvrir mon prochain sort</button></div>
+</section>
+<h2 class="quest-lands-title">🗺️ Les cinq royaumes magiques</h2>
+<div class="quest-lands" id="questLands"></div>
+
+  <nav class="cats" id="cats"></nav>
+  <div class="legend-row" id="legendRow"></div>
+
+  <div class="cat-heading" id="catHeading"></div>
+  <div class="grid" id="grid"></div>
+
+  <div class="finalquiz-launch">
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="globalBar"></div></div>
+    <p style="font-size:11px;font-weight:600;color:var(--ink);font-family:'IBM Plex Mono',monospace;margin:8px 0 16px;">PROGRESSION GÉNÉRALE</p>
+    <div class="launch-btns">
+      <button class="finalquiz-btn" id="finalQuizBtn">Lancer le grand contrôle (15 questions)</button>
+      <button class="mnemo-btn" id="mnemoAllBtn">Toutes les figures</button>
+    </div>
+    <div class="badges-row" id="badgesRow"></div>
+  </div>
+
+  <footer>LE GRIMOIRE DU STYLE — FIGURES DE STYLE ÉTABLIES POUR LE COLLÈGE</footer>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="panel" id="panel"></div>
+</div>
+
+<script type="application/json" id="data">
+{
+  "categories": [
+    {
+      "id": "analogie",
+      "name": "Figures d'analogie",
+      "short": "Analogie",
+      "desc": "Rapprocher deux éléments différents pour créer une image."
+    },
+    {
+      "id": "insistance",
+      "name": "Figures d'insistance",
+      "short": "Insistance",
+      "desc": "Amplifier ou répéter pour marquer les esprits."
+    },
+    {
+      "id": "opposition",
+      "name": "Opposition & atténuation",
+      "short": "Opposition",
+      "desc": "Contraster ou adoucir pour créer un effet."
+    },
+    {
+      "id": "substitution",
+      "name": "Figures de substitution",
+      "short": "Substitution",
+      "desc": "Désigner une chose par un mot détourné."
+    },
+    {
+      "id": "sonore",
+      "name": "Figures sonores & construction",
+      "short": "Sonore",
+      "desc": "Jouer sur les sons et la structure des phrases."
+    }
+  ],
+  "figures": [
+    {
+      "id": "comparaison",
+      "cat": "analogie",
+      "title": "La comparaison",
+      "niveau": "6e",
+      "definition": "La comparaison rapproche deux éléments différents à l'aide d'un mot comparatif (comme, tel que, pareil à...), en gardant les deux éléments présents dans la phrase.",
+      "astuce": "Cherche le mot comparatif (comme, tel, pareil à, semblable à) : s'il est présent, c'est une comparaison.",
+      "mnemo": "COMME = le mot-clé de la comparaison.",
+      "example": {
+        "sentence": "Ses yeux brillaient comme des étoiles dans la nuit.",
+        "target": "comme des étoiles"
+      },
+      "defi": {
+        "starter": "Le vent soufflait fort.",
+        "criteres": [
+          "As-tu utilisé un mot comparatif (comme, tel que, pareil à) ?",
+          "As-tu choisi une image précise et parlante ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Ses yeux brillaient comme des étoiles. » — quelle figure de style ?",
+          "options": [
+            "Comparaison",
+            "Métaphore",
+            "Personnification",
+            "Hyperbole"
+          ],
+          "correct": 0,
+          "exp": "Le mot comparatif « comme » relie les deux éléments : c'est une comparaison."
+        },
+        {
+          "q": "Quelle phrase contient une comparaison ?",
+          "options": [
+            "Cet enfant est un ange.",
+            "Cet enfant est sage comme une image.",
+            "Cet enfant a le sourire d'un ange.",
+            "Quel ange, cet enfant !"
+          ],
+          "correct": 1,
+          "exp": "« Comme » introduit clairement la comparaison entre l'enfant et l'image."
+        }
+      ]
+    },
+    {
+      "id": "metaphore",
+      "cat": "analogie",
+      "title": "La métaphore",
+      "niveau": "5e",
+      "definition": "La métaphore rapproche deux éléments différents sans mot comparatif : l'un est directement désigné par les mots de l'autre.",
+      "astuce": "S'il n'y a pas de mot comparatif mais qu'un mot est employé au sens imagé pour un autre, c'est une métaphore.",
+      "mnemo": "Pas de COMME = métaphore : les deux éléments fusionnent.",
+      "example": {
+        "sentence": "Cet élève est une véritable fusée en mathématiques.",
+        "target": "une véritable fusée"
+      },
+      "defi": {
+        "starter": "La nuit était très sombre.",
+        "criteres": [
+          "As-tu évité tout mot comparatif ?",
+          "Le mot imagé remplace-t-il directement l'idée de départ ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Cet élève est une véritable fusée en mathématiques. » — quelle figure ?",
+          "options": [
+            "Comparaison",
+            "Métaphore",
+            "Litote",
+            "Euphémisme"
+          ],
+          "correct": 1,
+          "exp": "Aucun mot comparatif : l'élève EST directement désigné comme une fusée. C'est une métaphore."
+        },
+        {
+          "q": "Quelle phrase est une métaphore ?",
+          "options": [
+            "Il court comme un lièvre.",
+            "Il court, pareil à un lièvre.",
+            "C'est un vrai lièvre à la course.",
+            "Il court, tel un lièvre."
+          ],
+          "correct": 2,
+          "exp": "Sans mot comparatif, il est directement désigné comme « un lièvre » : métaphore."
+        }
+      ]
+    },
+    {
+      "id": "personnification",
+      "cat": "analogie",
+      "title": "La personnification",
+      "niveau": "6e",
+      "definition": "La personnification attribue des comportements, des sentiments ou des paroles humaines à un animal, un objet ou une idée.",
+      "astuce": "Cherche un verbe ou un adjectif normalement réservé aux humains, appliqué à une chose ou un animal.",
+      "mnemo": "Personnification = un objet devient une personne, le temps d'une phrase.",
+      "example": {
+        "sentence": "Le vent hurlait sa colère à travers la forêt.",
+        "target": "hurlait sa colère"
+      },
+      "defi": {
+        "starter": "La porte grinçait.",
+        "criteres": [
+          "As-tu donné un comportement humain à un objet ou un animal ?",
+          "Le verbe ou l'adjectif choisi est-il normalement réservé aux humains ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Le vent hurlait sa colère. » — quelle figure ?",
+          "options": [
+            "Métaphore",
+            "Personnification",
+            "Hyperbole",
+            "Ironie"
+          ],
+          "correct": 1,
+          "exp": "Le vent, qui n'est pas humain, « hurle » et a de la « colère » : c'est une personnification."
+        },
+        {
+          "q": "Quelle phrase est une personnification ?",
+          "options": [
+            "La pluie tombait fort.",
+            "La pluie dansait sur les toits.",
+            "La pluie était froide.",
+            "Il pleuvait des cordes."
+          ],
+          "correct": 1,
+          "exp": "« Danser » est une action humaine attribuée à la pluie : personnification."
+        }
+      ]
+    },
+    {
+      "id": "hyperbole",
+      "cat": "insistance",
+      "title": "L'hyperbole",
+      "niveau": "6e",
+      "definition": "L'hyperbole exagère volontairement la réalité pour renforcer une idée ou un sentiment.",
+      "astuce": "Demande-toi si l'affirmation est littéralement possible : si c'est manifestement exagéré, c'est une hyperbole.",
+      "mnemo": "Hyperbole = on grossit exprès pour marquer les esprits.",
+      "example": {
+        "sentence": "J'ai une montagne de devoirs à faire ce soir.",
+        "target": "une montagne de devoirs"
+      },
+      "defi": {
+        "starter": "J'ai très faim.",
+        "criteres": [
+          "As-tu exagéré volontairement et clairement ?",
+          "L'exagération est-elle immédiatement reconnaissable comme impossible ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« J'ai une montagne de devoirs. » — quelle figure ?",
+          "options": [
+            "Hyperbole",
+            "Litote",
+            "Métonymie",
+            "Antithèse"
+          ],
+          "correct": 0,
+          "exp": "L'exagération volontaire (une vraie montagne n'existe pas ici) est une hyperbole."
+        },
+        {
+          "q": "Quelle phrase est une hyperbole ?",
+          "options": [
+            "J'ai un peu de travail.",
+            "J'ai mille choses à faire.",
+            "J'ai quelques devoirs.",
+            "J'ai un devoir à faire."
+          ],
+          "correct": 1,
+          "exp": "« Mille choses » exagère volontairement la quantité réelle : hyperbole."
+        }
+      ]
+    },
+    {
+      "id": "gradation",
+      "cat": "insistance",
+      "title": "La gradation",
+      "niveau": "4e",
+      "definition": "La gradation énumère plusieurs termes de même nature en les organisant par intensité croissante ou décroissante.",
+      "astuce": "Vérifie que les mots sont classés par intensité, du plus faible au plus fort (ou l'inverse), pas juste énumérés au hasard.",
+      "mnemo": "Gradation = les mots montent (ou descendent) une marche à la fois.",
+      "example": {
+        "sentence": "Il a d'abord souri, puis ri, puis explosé de rire.",
+        "target": "souri, puis ri, puis explosé de rire"
+      },
+      "defi": {
+        "starter": "Il était content.",
+        "criteres": [
+          "As-tu utilisé au moins 3 mots ?",
+          "Sont-ils classés par intensité croissante ou décroissante ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Il a souri, puis ri, puis explosé de rire. » — quelle figure ?",
+          "options": [
+            "Énumération",
+            "Gradation",
+            "Anaphore",
+            "Antithèse"
+          ],
+          "correct": 1,
+          "exp": "Les termes sont classés par intensité croissante (souri < ri < explosé de rire) : gradation."
+        },
+        {
+          "q": "Quelle phrase est une gradation ?",
+          "options": [
+            "Il a des livres, des crayons et des feuilles.",
+            "Il est triste, très triste, effondré.",
+            "Il est grand et fort.",
+            "Il pleure comme un enfant."
+          ],
+          "correct": 1,
+          "exp": "Les mots montent en intensité (triste → très triste → effondré) : gradation."
+        }
+      ]
+    },
+    {
+      "id": "enumeration",
+      "cat": "insistance",
+      "title": "L'énumération",
+      "niveau": "6e",
+      "definition": "L'énumération aligne plusieurs mots ou groupes de même nature, séparés par des virgules, pour donner une impression d'abondance ou de précision.",
+      "astuce": "Compte les éléments séparés par des virgules : à partir de trois, c'est une énumération.",
+      "mnemo": "Énumération = une liste de mots qui s'accumulent dans la phrase.",
+      "example": {
+        "sentence": "Dans son sac, elle avait des livres, des crayons, des feuilles et un goûter.",
+        "target": "des livres, des crayons, des feuilles et un goûter"
+      },
+      "defi": {
+        "starter": "Elle a rangé sa chambre.",
+        "criteres": [
+          "As-tu utilisé au moins 3 éléments séparés par des virgules ?",
+          "Les éléments sont-ils de même nature grammaticale ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Des livres, des crayons, des feuilles et un goûter. » — quelle figure ?",
+          "options": [
+            "Gradation",
+            "Énumération",
+            "Anaphore",
+            "Périphrase"
+          ],
+          "correct": 1,
+          "exp": "Une simple liste de plusieurs éléments juxtaposés, sans progression d'intensité : énumération."
+        },
+        {
+          "q": "Quelle phrase contient une énumération ?",
+          "options": [
+            "Il est grand, très grand.",
+            "Il a pris son sac, son livre, son stylo et son cahier.",
+            "Il ressemble à un géant.",
+            "Il est aussi grand qu'une tour."
+          ],
+          "correct": 1,
+          "exp": "Quatre éléments juxtaposés par des virgules : énumération."
+        }
+      ]
+    },
+    {
+      "id": "anaphore",
+      "cat": "insistance",
+      "title": "L'anaphore",
+      "niveau": "4e",
+      "definition": "L'anaphore répète volontairement le même mot ou groupe de mots au début de plusieurs phrases ou vers, pour créer un effet de rythme ou d'insistance.",
+      "astuce": "Regarde le début de plusieurs phrases ou vers qui se suivent : si le même mot revient à chaque fois, c'est une anaphore.",
+      "mnemo": "Anaphore = le même mot revient toujours en tête de phrase.",
+      "example": {
+        "sentence": "Je me souviens de son sourire. Je me souviens de sa voix. Je me souviens de tout.",
+        "target": "Je me souviens"
+      },
+      "defi": {
+        "starter": "Le silence régnait dans la classe.",
+        "criteres": [
+          "As-tu répété le même début dans au moins 2 phrases ?",
+          "L'effet créé insiste-t-il sur une idée ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Je me souviens de son sourire. Je me souviens de sa voix. » — quelle figure ?",
+          "options": [
+            "Anaphore",
+            "Répétition maladroite",
+            "Antithèse",
+            "Gradation"
+          ],
+          "correct": 0,
+          "exp": "« Je me souviens » revient volontairement en tête de chaque phrase : anaphore."
+        },
+        {
+          "q": "Quelle phrase illustre une anaphore ?",
+          "options": [
+            "Il pleut, il pleut encore.",
+            "Je veux réussir. Je veux progresser. Je veux apprendre.",
+            "Il est grand et fort.",
+            "Elle chante comme un rossignol."
+          ],
+          "correct": 1,
+          "exp": "« Je veux » est répété en tête de chaque phrase : anaphore."
+        }
+      ]
+    },
+    {
+      "id": "antithese",
+      "cat": "opposition",
+      "title": "L'antithèse",
+      "niveau": "5e",
+      "definition": "L'antithèse rapproche deux mots ou groupes de sens opposé dans une même phrase pour souligner un contraste.",
+      "astuce": "Cherche deux idées clairement opposées, placées l'une à côté de l'autre dans la phrase.",
+      "mnemo": "Antithèse = deux contraires face à face dans la même phrase.",
+      "example": {
+        "sentence": "Il vivait pauvre et mourut riche.",
+        "target": "vivait pauvre et mourut riche"
+      },
+      "defi": {
+        "starter": "Il était fatigué.",
+        "criteres": [
+          "As-tu opposé deux idées contraires dans la même phrase ?",
+          "Le contraste est-il net et facile à repérer ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Il vivait pauvre et mourut riche. » — quelle figure ?",
+          "options": [
+            "Oxymore",
+            "Antithèse",
+            "Litote",
+            "Métaphore"
+          ],
+          "correct": 1,
+          "exp": "« Pauvre » et « riche » sont deux idées opposées, placées côte à côte : antithèse."
+        },
+        {
+          "q": "Quelle phrase illustre une antithèse ?",
+          "options": [
+            "Cette obscure clarté.",
+            "Il est petit mais costaud.",
+            "Le combat fut long, très long.",
+            "Elle chante comme un ange."
+          ],
+          "correct": 1,
+          "exp": "« Petit » et « costaud » créent un contraste net dans la même phrase : antithèse."
+        }
+      ]
+    },
+    {
+      "id": "oxymore",
+      "cat": "opposition",
+      "title": "L'oxymore",
+      "niveau": "4e",
+      "definition": "L'oxymore associe dans un même groupe de mots deux termes de sens contradictoire, créant une image surprenante.",
+      "astuce": "Cherche deux mots collés l'un à l'autre (souvent un nom et un adjectif) qui semblent se contredire directement.",
+      "mnemo": "Oxymore = deux mots contraires collés l'un à l'autre.",
+      "example": {
+        "sentence": "Cette obscure clarté tombait des étoiles.",
+        "target": "obscure clarté"
+      },
+      "defi": {
+        "starter": "Le silence était impressionnant.",
+        "criteres": [
+          "As-tu collé deux mots contradictoires l'un à l'autre ?",
+          "L'image créée est-elle surprenante ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Cette obscure clarté tombait des étoiles. » — quelle figure ?",
+          "options": [
+            "Antithèse",
+            "Oxymore",
+            "Litote",
+            "Personnification"
+          ],
+          "correct": 1,
+          "exp": "« Obscure » et « clarté » sont deux mots contradictoires collés dans le même groupe : oxymore."
+        },
+        {
+          "q": "Quelle expression est un oxymore ?",
+          "options": [
+            "Un silence assourdissant",
+            "Un grand silence",
+            "Un silence pesant",
+            "Un long silence"
+          ],
+          "correct": 0,
+          "exp": "« Silence » (absence de bruit) et « assourdissant » (très bruyant) se contredisent directement : oxymore."
+        }
+      ]
+    },
+    {
+      "id": "litote",
+      "cat": "opposition",
+      "title": "La litote",
+      "niveau": "4e",
+      "definition": "La litote dit peu pour suggérer beaucoup : elle atténue l'expression, souvent par une négation, pour faire comprendre plus que ce qui est écrit.",
+      "astuce": "Repère une formule négative qui, en réalité, exprime une idée forte (« pas mauvais » pour dire « excellent »).",
+      "mnemo": "Litote = dire moins pour faire comprendre plus.",
+      "example": {
+        "sentence": "Va, je ne te hais point.",
+        "target": "je ne te hais point"
+      },
+      "defi": {
+        "starter": "Ce repas était excellent.",
+        "criteres": [
+          "As-tu utilisé une formule négative ou atténuée ?",
+          "Suggère-t-elle plus qu'elle n'affiche ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Je ne te hais point. » (pour dire qu'on aime fort) — quelle figure ?",
+          "options": [
+            "Litote",
+            "Euphémisme",
+            "Ironie",
+            "Hyperbole"
+          ],
+          "correct": 0,
+          "exp": "La formule atténuée par la négation en dit en réalité beaucoup plus qu'elle n'affiche : litote."
+        },
+        {
+          "q": "Quelle phrase est une litote (dire moins pour suggérer plus) ?",
+          "options": [
+            "Ce n'est pas mauvais du tout !",
+            "C'est absolument délicieux !",
+            "C'est un vrai régal !",
+            "C'est le meilleur plat du monde !"
+          ],
+          "correct": 0,
+          "exp": "« Pas mauvais » dit moins pour suggérer beaucoup plus (« excellent ») : litote."
+        }
+      ]
+    },
+    {
+      "id": "euphemisme",
+      "cat": "opposition",
+      "title": "L'euphémisme",
+      "niveau": "5e",
+      "definition": "L'euphémisme remplace une réalité désagréable ou brutale par une expression plus douce, pour atténuer un choc.",
+      "astuce": "Demande-toi si l'expression adoucit une réalité difficile (mort, maladie, échec...) au lieu de la nommer directement.",
+      "mnemo": "Euphémisme = on adoucit les mots pour adoucir la réalité.",
+      "example": {
+        "sentence": "Son grand-père nous a quittés l'année dernière.",
+        "target": "nous a quittés"
+      },
+      "defi": {
+        "starter": "Il a échoué à son examen.",
+        "criteres": [
+          "As-tu adouci une réalité difficile ?",
+          "Évites-tu de nommer directement la chose brutale ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Son grand-père nous a quittés l'année dernière. » — quelle figure ?",
+          "options": [
+            "Euphémisme",
+            "Litote",
+            "Ironie",
+            "Métonymie"
+          ],
+          "correct": 0,
+          "exp": "« Nous a quittés » adoucit l'annonce d'un décès : euphémisme."
+        },
+        {
+          "q": "Quelle phrase est un euphémisme ?",
+          "options": [
+            "Il est mort hier.",
+            "Il nous a quittés hier.",
+            "Il est décédé brutalement hier.",
+            "Il a cessé de vivre hier."
+          ],
+          "correct": 1,
+          "exp": "« Nous a quittés » est la formule la plus adoucie parmi ces quatre : euphémisme."
+        }
+      ]
+    },
+    {
+      "id": "ironie",
+      "cat": "opposition",
+      "title": "L'ironie",
+      "niveau": "5e",
+      "definition": "L'ironie dit le contraire de ce que l'on pense réellement, pour se moquer ou critiquer, en comptant sur le lecteur pour comprendre le décalage.",
+      "astuce": "Demande-toi si le sens littéral est absurde ou contredit la situation : si oui, c'est probablement de l'ironie.",
+      "mnemo": "Ironie = dire le contraire de ce que l'on pense, exprès.",
+      "example": {
+        "sentence": "Quel temps magnifique !",
+        "target": "Quel temps magnifique"
+      },
+      "defi": {
+        "starter": "Le repas était raté.",
+        "criteres": [
+          "Dis-tu le contraire de ce que tu penses ?",
+          "Le décalage est-il compréhensible par le lecteur ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Quel temps magnifique ! » (dit sous une pluie battante) — quelle figure ?",
+          "options": [
+            "Ironie",
+            "Litote",
+            "Euphémisme",
+            "Hyperbole"
+          ],
+          "correct": 0,
+          "exp": "La phrase dit le contraire de la réalité pour se moquer de la situation : ironie."
+        },
+        {
+          "q": "Quelle situation illustre l'ironie ?",
+          "options": [
+            "Dire « quel travail formidable » devant une pièce ratée",
+            "Dire « ce n'est pas mal » pour un travail excellent",
+            "Dire « il a un peu de retard » pour trois heures de retard",
+            "Dire « il nous a quittés » pour annoncer un décès"
+          ],
+          "correct": 0,
+          "exp": "Féliciter ironiquement un travail raté en disant le contraire de ce qu'on pense : ironie."
+        }
+      ]
+    },
+    {
+      "id": "periphrase",
+      "cat": "substitution",
+      "title": "La périphrase",
+      "niveau": "5e",
+      "definition": "La périphrase remplace un mot précis par un groupe de mots qui le décrit, sans le nommer directement.",
+      "astuce": "Cherche un groupe de mots qui décrit quelqu'un ou quelque chose sans jamais le nommer clairement.",
+      "mnemo": "Périphrase = décrire au lieu de nommer.",
+      "example": {
+        "sentence": "L'astre du jour se levait à peine sur la ville.",
+        "target": "L'astre du jour"
+      },
+      "defi": {
+        "starter": "Le soleil brillait.",
+        "criteres": [
+          "As-tu décrit l'élément sans le nommer directement ?",
+          "La description reste-t-elle compréhensible ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« L'astre du jour se levait à peine. » (= le soleil) — quelle figure ?",
+          "options": [
+            "Métonymie",
+            "Périphrase",
+            "Métaphore",
+            "Litote"
+          ],
+          "correct": 1,
+          "exp": "« L'astre du jour » décrit le soleil sans le nommer directement : périphrase."
+        },
+        {
+          "q": "Quelle expression est une périphrase pour désigner Paris ?",
+          "options": [
+            "La Ville Lumière",
+            "Une grande ville",
+            "Paris, la capitale",
+            "Une belle ville"
+          ],
+          "correct": 0,
+          "exp": "« La Ville Lumière » décrit Paris sans le nommer : périphrase."
+        }
+      ]
+    },
+    {
+      "id": "metonymie",
+      "cat": "substitution",
+      "title": "La métonymie",
+      "niveau": "3e",
+      "definition": "La métonymie désigne une chose par un mot qui lui est étroitement lié (le contenant pour le contenu, le lieu pour les personnes, l'auteur pour son œuvre...).",
+      "astuce": "Vérifie si le mot employé n'est pas exactement la bonne chose, mais un élément proche et logiquement lié à elle.",
+      "mnemo": "Métonymie = un mot voisin à la place du mot exact.",
+      "example": {
+        "sentence": "Toute la salle applaudissait à tout rompre.",
+        "target": "Toute la salle applaudissait"
+      },
+      "defi": {
+        "starter": "Tout le stade criait de joie.",
+        "criteres": [
+          "As-tu désigné les personnes par un lieu ou un objet lié à elles ?",
+          "Le lien entre le mot employé et la réalité désignée est-il logique ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Toute la salle applaudissait à tout rompre. » — quelle figure ?",
+          "options": [
+            "Synecdoque",
+            "Métonymie",
+            "Périphrase",
+            "Personnification"
+          ],
+          "correct": 1,
+          "exp": "« La salle » désigne les personnes qui s'y trouvent, un mot lié à la chose désignée : métonymie."
+        },
+        {
+          "q": "Quelle phrase illustre une métonymie ?",
+          "options": [
+            "Boire un verre d'eau.",
+            "La ville de Rome.",
+            "Il ressemble à un lion.",
+            "Il est fort comme un bœuf."
+          ],
+          "correct": 0,
+          "exp": "« Boire un verre » désigne en réalité son contenu : le contenant pour le contenu, c'est une métonymie."
+        }
+      ]
+    },
+    {
+      "id": "allitteration",
+      "cat": "sonore",
+      "title": "L'allitération",
+      "niveau": "5e",
+      "definition": "L'allitération répète plusieurs fois le même son consonne dans une phrase ou un vers, ce qui crée un effet sonore. Ici, le son « s » revient dans « sont », « ces », « serpents », « sifflent » et « sur ».",
+      "astuce": "Lis la phrase à voix haute en écoutant seulement les consonnes du début des mots : si l'une d'elles revient plusieurs fois, c'est une allitération.",
+      "mnemo": "Allitération = une consonne qui revient comme un écho, dans des mots différents.",
+      "example": {
+        "sentence": "Pour qui sont ces serpents qui sifflent sur vos têtes ?",
+        "targets": [
+          "sont",
+          "ces",
+          "serpents",
+          "sifflent",
+          "sur"
+        ]
+      },
+      "defi": {
+        "starter": "Le chat dormait tranquillement.",
+        "criteres": [
+          "As-tu répété la même consonne plusieurs fois ?",
+          "L'effet sonore est-il audible à la lecture à voix haute ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Pour qui sont ces serpents qui sifflent... » — quelle figure ?",
+          "options": [
+            "Assonance",
+            "Allitération",
+            "Anaphore",
+            "Gradation"
+          ],
+          "correct": 1,
+          "exp": "Le son consonne « s » revient plusieurs fois : allitération."
+        },
+        {
+          "q": "Quelle phrase contient une allitération marquée ?",
+          "options": [
+            "Les sanglots longs des violons.",
+            "Pour qui sont ces serpents qui sifflent ?",
+            "Il pleure de joie.",
+            "C'est un vrai régal."
+          ],
+          "correct": 1,
+          "exp": "Répétition du son « s » (serpents, sifflent) : allitération."
+        }
+      ]
+    },
+    {
+      "id": "assonance",
+      "cat": "sonore",
+      "title": "L'assonance",
+      "niveau": "5e",
+      "definition": "L'assonance répète plusieurs fois le même son voyelle dans une phrase ou un vers, ce qui crée une musique particulière. Ici, le son nasal « on/an » revient dans « sanglots », « longs », « violons » et « automne ».",
+      "astuce": "Lis la phrase à voix haute en écoutant seulement les voyelles (a, an, on, i, ou...) : si l'une d'elles revient plusieurs fois dans des mots différents, c'est une assonance.",
+      "mnemo": "Assonance = une voyelle qui revient comme un refrain, même dans des mots différents.",
+      "example": {
+        "sentence": "Les sanglots longs des violons de l'automne.",
+        "targets": [
+          "sanglots",
+          "longs",
+          "violons",
+          "l'automne"
+        ]
+      },
+      "defi": {
+        "starter": "Le ciel était bleu.",
+        "criteres": [
+          "As-tu répété le même son voyelle plusieurs fois ?",
+          "L'effet est-il audible à la lecture à voix haute ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Les sanglots longs des violons de l'automne. » — quelle figure ?",
+          "options": [
+            "Allitération",
+            "Assonance",
+            "Anaphore",
+            "Litote"
+          ],
+          "correct": 1,
+          "exp": "Le son voyelle « on » revient plusieurs fois (sanglots, violons, automne) : assonance."
+        },
+        {
+          "q": "Une assonance repose sur la répétition...",
+          "options": [
+            "D'un son consonne",
+            "D'un son voyelle",
+            "D'un mot entier",
+            "D'une structure de phrase"
+          ],
+          "correct": 1,
+          "exp": "L'assonance répète un son voyelle, contrairement à l'allitération qui répète une consonne."
+        }
+      ]
+    },
+    {
+      "id": "repetition-stylistique",
+      "cat": "sonore",
+      "title": "La répétition stylistique",
+      "niveau": "4e",
+      "definition": "La répétition stylistique reprend volontairement un mot ou un groupe de mots pour insister sur une idée ou créer un effet de rythme.",
+      "astuce": "Demande-toi si la répétition semble voulue et rythmée, ou si elle ressemble à un oubli maladroit : dans le premier cas, c'est une figure de style.",
+      "mnemo": "Répétition stylistique = un choix, pas un oubli.",
+      "example": {
+        "sentence": "Rien, rien ne pourra nous arrêter.",
+        "target": "Rien, rien"
+      },
+      "defi": {
+        "starter": "Il avait peur.",
+        "criteres": [
+          "As-tu répété volontairement un mot pour insister ?",
+          "La répétition crée-t-elle un effet de rythme ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Rien, rien ne pourra nous arrêter. » — quelle figure ?",
+          "options": [
+            "Répétition stylistique",
+            "Anaphore",
+            "Gradation",
+            "Énumération"
+          ],
+          "correct": 0,
+          "exp": "« Rien » est répété volontairement pour insister, dans une même phrase : répétition stylistique."
+        },
+        {
+          "q": "Qu'est-ce qui distingue une répétition stylistique d'une répétition maladroite ?",
+          "options": [
+            "Rien, c'est la même chose",
+            "La répétition stylistique est volontaire et rythmée",
+            "La répétition maladroite est plus longue",
+            "La répétition stylistique évite toujours les pronoms"
+          ],
+          "correct": 1,
+          "exp": "La répétition stylistique est un choix d'auteur pour créer un effet, contrairement à une répétition accidentelle."
+        }
+      ]
+    },
+    {
+      "id": "parallelisme",
+      "cat": "sonore",
+      "title": "Le parallélisme de construction",
+      "niveau": "4e",
+      "definition": "Le parallélisme de construction reprend la même structure grammaticale dans deux groupes ou deux phrases qui se suivent, pour créer un effet de symétrie.",
+      "astuce": "Compare la construction grammaticale des deux groupes : si elle est identique, c'est un parallélisme.",
+      "mnemo": "Parallélisme = deux phrases construites en miroir.",
+      "example": {
+        "sentence": "Il pleurait sa jeunesse perdue, il pleurait ses rêves envolés.",
+        "target": "il pleurait ses rêves envolés"
+      },
+      "defi": {
+        "starter": "Elle aimait lire. Elle aimait aussi dessiner.",
+        "criteres": [
+          "Les deux groupes ont-ils la même construction grammaticale ?",
+          "L'effet de symétrie est-il visible ?"
+        ]
+      },
+      "quiz": [
+        {
+          "q": "« Il pleurait sa jeunesse perdue, il pleurait ses rêves envolés. » — quelle figure ?",
+          "options": [
+            "Anaphore",
+            "Parallélisme de construction",
+            "Antithèse",
+            "Gradation"
+          ],
+          "correct": 1,
+          "exp": "Les deux groupes ont exactement la même construction grammaticale : parallélisme de construction."
+        },
+        {
+          "q": "Quelle phrase illustre un parallélisme de construction ?",
+          "options": [
+            "Il pleut, il pleut, il pleut encore.",
+            "Il aimait la mer, il aimait la montagne.",
+            "Il est petit mais costaud.",
+            "Il ressemble à un lion."
+          ],
+          "correct": 1,
+          "exp": "Les deux groupes suivent la même structure (il aimait + nom) : parallélisme."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("data").textContent);
+  var CATS = DATA.categories;
+  var FIGURES = DATA.figures;
+
+  var CAT_COLORS = {analogie:"#7a5c3e", insistance:"#b23a48", opposition:"#4a6fa5", substitution:"#4f7942", sonore:"#8e5b9e"};
+  var INK_COLOR = "#241811";
+
+  var STORAGE_KEY = "grimoireStyleProgress";
+  var progress = loadProgress();
+  var DEFI_KEY = "grimoireStyleDefis";
+  var defis = loadDefis();
+
+  var currentCat = "tous";
+  var LEVELS = ["6e","5e","4e","3e"];
+  var currentLevel = "tous";
+
+  var catsNav = document.getElementById("cats");
+  var catHeading = document.getElementById("catHeading");
+  var grid = document.getElementById("grid");
+  var overlay = document.getElementById("overlay");
+  var panel = document.getElementById("panel");
+  var globalBar = document.getElementById("globalBar");
+  var badgesRow = document.getElementById("badgesRow");
+  var finalQuizBtn = document.getElementById("finalQuizBtn");
+  var levelRow = document.getElementById("levelRow");
+
+  function levelRank(lv){
+    for(var i=0;i<LEVELS.length;i++){ if(LEVELS[i]===lv){ return i; } }
+    return 99;
+  }
+  function levelAllowed(f){
+    if(currentLevel==="tous"){ return true; }
+    return levelRank(f.niveau) <= levelRank(currentLevel);
+  }
+
+  function loadProgress(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){ return JSON.parse(raw); }
+    }catch(e){}
+    return {read:{}, quiz:{}, xp:0};
+  }
+  function saveProgress(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(e){}
+  }
+  function loadDefis(){
+    try{
+      var raw = localStorage.getItem(DEFI_KEY);
+      if(raw){ return JSON.parse(raw); }
+    }catch(e){}
+    return {};
+  }
+  function saveDefis(){
+    try{ localStorage.setItem(DEFI_KEY, JSON.stringify(defis)); }catch(e){}
+  }
+  function markRead(id){
+    if(!progress.read[id]){ progress.read[id] = true; saveProgress(); updateHud(); }
+  }
+  function markQuizDone(id, gained){
+    if(!progress.quiz[id]){
+      progress.quiz[id] = true;
+      progress.xp = (progress.xp||0) + gained;
+      saveProgress();
+      updateHud();
+    }
+  }
+
+  function countByCat(cat){
+    var c = 0;
+    for(var i=0;i<FIGURES.length;i++){ if(FIGURES[i].cat===cat && levelAllowed(FIGURES[i])){ c++; } }
+    return c;
+  }
+  function countAll(){
+    var c = 0;
+    for(var i=0;i<FIGURES.length;i++){ if(levelAllowed(FIGURES[i])){ c++; } }
+    return c;
+  }
+
+  function renderLevelRow(){
+    var opts = [{id:"tous", label:"Tous niveaux"}];
+    for(var i=0;i<LEVELS.length;i++){ opts.push({id:LEVELS[i], label:LEVELS[i]}); }
+    var html = "";
+    for(var j=0;j<opts.length;j++){
+      html += '<button class="level-pill'+(opts[j].id===currentLevel?' active':'')+'" data-lvl="'+opts[j].id+'">'+opts[j].label+'</button>';
+    }
+    levelRow.innerHTML = html;
+    var pills = levelRow.querySelectorAll(".level-pill");
+    for(var k=0;k<pills.length;k++){
+      pills[k].addEventListener("click", function(e){
+        currentLevel = e.currentTarget.getAttribute("data-lvl");
+        renderLevelRow();
+        renderNav();
+        renderGrid();
+      });
+    }
+  }
+
+  function renderNav(){
+    var html = "";
+    var allActive = currentCat==="tous";
+    var allStyle = allActive ? ' style="background:'+INK_COLOR+';border-color:'+INK_COLOR+';"' : "";
+    html += '<button class="cat-tab'+(allActive?' active':'')+'" data-cat="tous"'+allStyle+'><span class="dot" style="background:'+INK_COLOR+';"></span>Toutes les figures <span class="count">'+countAll()+'</span></button>';
+    for(var i=0;i<CATS.length;i++){
+      var c = CATS[i];
+      var col = CAT_COLORS[c.id];
+      var activeStyle = c.id===currentCat ? ' style="background:'+col+';border-color:'+col+';"' : "";
+      html += '<button class="cat-tab'+(c.id===currentCat?' active':'')+'" data-cat="'+c.id+'"'+activeStyle+'><span class="dot" style="background:'+col+';"></span>'+c.short+' <span class="count">'+countByCat(c.id)+'</span></button>';
+    }
+    catsNav.innerHTML = html;
+    var btns = catsNav.querySelectorAll(".cat-tab");
+    for(var j=0;j<btns.length;j++){
+      btns[j].addEventListener("click", function(e){
+        currentCat = e.currentTarget.getAttribute("data-cat");
+        renderNav();
+        renderGrid();
+      });
+    }
+  }
+
+  function truncate(s, n){
+    if(s.length<=n){ return s; }
+    return s.substring(0,n).replace(/\s+\S*$/, "") + "…";
+  }
+
+  function findFigure(id){
+    for(var i=0;i<FIGURES.length;i++){ if(FIGURES[i].id===id){ return FIGURES[i]; } }
+    return null;
+  }
+  function findCat(id){
+    for(var i=0;i<CATS.length;i++){ if(CATS[i].id===id){ return CATS[i]; } }
+    return null;
+  }
+
+  function renderGrid(){
+    var items = [];
+    var headingHtml;
+    if(currentCat==="tous"){
+      headingHtml = '<h2>Toutes les figures</h2><p>Les 18 figures de style, toutes familles confondues.</p>';
+      for(var k=0;k<FIGURES.length;k++){ if(levelAllowed(FIGURES[k])){ items.push(FIGURES[k]); } }
+    } else {
+      var cat = null;
+      for(var i=0;i<CATS.length;i++){ if(CATS[i].id===currentCat){ cat = CATS[i]; } }
+      headingHtml = '<h2>'+cat.name+'</h2><p>'+cat.desc+'</p>';
+      for(var k2=0;k2<FIGURES.length;k2++){ if(FIGURES[k2].cat===currentCat && levelAllowed(FIGURES[k2])){ items.push(FIGURES[k2]); } }
+    }
+    catHeading.innerHTML = headingHtml;
+
+    var html = "";
+    if(items.length===0){
+      html = '<p class="empty-msg">Aucune figure à ce niveau dans cette famille pour l\'instant.</p>';
+    }
+    for(var m=0;m<items.length;m++){
+      var n = items[m];
+      var col = CAT_COLORS[n.cat];
+      var done = progress.quiz[n.id] ? '<div class="done" title="Quiz réussi"></div>' : '';
+      html += '<div class="card" data-id="'+n.id+'" style="border-left-color:'+col+';">'+done+
+        '<div class="lvl-badge">'+n.niveau+'</div>'+
+        '<div class="catpill" style="background:'+col+';">'+findCat(n.cat).short+'</div>'+
+        '<h3>'+n.title+'</h3>'+
+        '<p>«&nbsp;'+truncate(n.example.sentence, 70)+'&nbsp;»</p>'+
+      '</div>';
+    }
+    grid.innerHTML = html;
+    var cards = grid.querySelectorAll(".card");
+    for(var p=0;p<cards.length;p++){
+      cards[p].addEventListener("click", function(e){
+        var id = e.currentTarget.getAttribute("data-id");
+        openFigure(id);
+      });
+    }
+  }
+
+  function stripPunct(s){ return s.replace(/[.,;:!?"«»]/g,''); }
+
+  function tokenizeSentence(example){
+    var rawWords = example.sentence.split(/\s+/);
+    var normSentence = rawWords.map(function(w){ return stripPunct(w.toLowerCase()); });
+    var flags = [];
+    for(var i=0;i<rawWords.length;i++){ flags.push(false); }
+
+    if(example.targets){
+      var scatterWords = example.targets.map(function(w){ return stripPunct(w.toLowerCase()); });
+      for(var s=0;s<normSentence.length;s++){
+        if(scatterWords.indexOf(normSentence[s]) !== -1){ flags[s] = true; }
+      }
+      return rawWords.map(function(w,i3){ return {t:w, err:flags[i3]}; });
+    }
+
+    var targetWords = example.target.split(/\s+/).map(function(w){ return stripPunct(w.toLowerCase()); });
+    var idx = 0;
+    while(idx <= normSentence.length - targetWords.length){
+      var match = true;
+      for(var j=0;j<targetWords.length;j++){
+        if(normSentence[idx+j] !== targetWords[j]){ match=false; break; }
+      }
+      if(match){
+        for(var kk=0;kk<targetWords.length;kk++){ flags[idx+kk]=true; }
+        idx += targetWords.length;
+      } else {
+        idx += 1;
+      }
+    }
+    return rawWords.map(function(w,i2){ return {t:w, err:flags[i2]}; });
+  }
+
+  function renderStyleGame(example){
+    var toks = tokenizeSentence(example);
+    var html = '<div class="style-sentence" id="gameSentence">';
+    for(var i=0;i<toks.length;i++){
+      var tk = toks[i];
+      html += '<span class="tok clickable" data-idx="'+i+'" data-err="'+(tk.err?"1":"0")+'"><span class="word">'+tk.t+'</span></span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function pickDistractors(n){
+    var sameCat = [];
+    var others = [];
+    for(var i=0;i<FIGURES.length;i++){
+      var other = FIGURES[i];
+      if(other.id===n.id){ continue; }
+      if(other.cat===n.cat){ sameCat.push(other); } else { others.push(other); }
+    }
+    shuffle(sameCat);
+    shuffle(others);
+    var pool = sameCat.concat(others);
+    return pool.slice(0,3);
+  }
+
+  function openFigure(id){
+    var n = findFigure(id);
+    if(!n){ return; }
+    markRead(id);
+    var cat = findCat(n.cat);
+    var col = CAT_COLORS[n.cat];
+
+    var distractors = pickDistractors(n);
+    var choiceFigs = [n].concat(distractors);
+    shuffle(choiceFigs);
+    var choicesHtml = "";
+    for(var c=0;c<choiceFigs.length;c++){
+      choicesHtml += '<button class="opt fig-opt" data-correct="'+(choiceFigs[c].id===n.id?"1":"0")+'">'+choiceFigs[c].title+'</button>';
+    }
+
+    var savedDefi = defis[n.id] || {};
+    var hintCount = tokenizeSentence(n.example).filter(function(t){return t.err;}).length;
+    var hintWord = hintCount > 1 ? "mots" : "mot";
+
+    var html = '<div class="panel-head" style="background:'+col+';">'+
+      '<div><div class="tag">'+cat.name+'</div><h2>'+n.title+'</h2></div>'+
+      '<button class="close-btn" id="closeBtn">✕</button>'+
+      '</div>'+
+      '<div class="panel-body">'+
+
+      '<div class="section-label">1. Je repère</div>'+
+      '<p class="observe-q">Touche le passage de la phrase qui illustre cette figure de style, puis vérifie.</p>'+
+      '<button class="hint-btn" id="hintBtn">💡 Besoin d\'un indice ?</button>'+
+      '<div id="hintBox" class="hint-box"></div>'+
+      '<div class="style-sheet">'+renderStyleGame(n.example)+'</div>'+
+      '<button class="reveal-btn" id="checkStep1Btn">Je vérifie mon repérage</button>'+
+      '<div id="step1Result" class="step-result"></div>'+
+
+      '<div id="step2Zone" class="step-zone">'+
+        '<div class="section-label">2. Je choisis la figure</div>'+
+        '<p class="observe-q">Quelle figure de style reconnais-tu ici ?</p>'+
+        '<div id="figChoices">'+choicesHtml+'</div>'+
+      '</div>'+
+
+      '<div id="step3Zone" class="step-zone">'+
+        '<div class="section-label">3. Je retiens la règle</div>'+
+        '<p class="def-text">'+n.definition+'</p>'+
+        '<div class="astuce"><b>Astuce :</b> '+n.astuce+'</div>'+
+        '<div class="mnemo-box"><b>Moyen mnémotechnique :</b> '+n.mnemo+'</div>'+
+        '<button class="quiz-btn" id="startQuizBtn">Tester mes connaissances</button>'+
+        '<button class="defi-btn" id="defiBtn">✒️ Atelier d\'écriture</button>'+
+        '<div id="defiZone" class="step-zone">'+
+          '<div class="defi-box">'+
+            '<div class="defi-starter">« '+n.defi.starter+' »</div>'+
+            '<p class="observe-q">Réécris cette phrase en utilisant '+(n.title.toLowerCase().indexOf("l\'")===0? n.title.toLowerCase() : "la figure : "+n.title.toLowerCase())+'.</p>'+
+            '<textarea id="defiText" placeholder="Écris ta phrase ici...">'+(savedDefi.text||"")+'</textarea>'+
+            '<div class="defi-crit">'+
+              n.defi.criteres.map(function(c,i){ return '<label><input type="checkbox" class="defi-check" data-ci="'+i+'"'+(savedDefi.checks && savedDefi.checks[i]?' checked':'')+'> '+c+'</label>'; }).join('')+
+            '</div>'+
+            '<button class="defi-save" id="defiSaveBtn">Enregistrer</button><span class="defi-saved-msg" id="defiSavedMsg">Enregistré ✓</span>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+
+      '</div>';
+
+    panel.innerHTML = html;
+    overlay.classList.add("show");
+    document.getElementById("closeBtn").addEventListener("click", closeOverlay);
+
+    var hintLevel = 0;
+    document.getElementById("hintBtn").addEventListener("click", function(e){
+      var box = document.getElementById("hintBox");
+      hintLevel++;
+      if(hintLevel === 1){
+        box.innerHTML = '<p class="step-msg">💡 '+n.astuce+'</p>';
+        box.classList.add("show");
+        e.currentTarget.textContent = "💡 Encore un indice ?";
+      } else if(hintLevel === 2){
+        box.innerHTML += '<p class="step-msg">🔎 Il faut trouver '+hintCount+' '+hintWord+' dans la phrase.</p>';
+        e.currentTarget.disabled = true;
+        e.currentTarget.textContent = "Indices épuisés";
+      }
+    });
+
+    document.getElementById("checkStep1Btn").addEventListener("click", function(e){
+      var toks = panel.querySelectorAll("#gameSentence .tok.clickable");
+      var correctCount = 0, totalTargets = 0;
+      for(var i=0;i<toks.length;i++){
+        var t = toks[i];
+        var isT = t.getAttribute("data-err")==="1";
+        var picked = t.classList.contains("picked");
+        if(isT){ totalTargets++; }
+        if(isT && picked){ t.classList.add("res-correct"); correctCount++; }
+        else if(isT && !picked){ t.classList.add("res-missed"); }
+        else if(!isT && picked){ t.classList.add("res-wrong"); }
+      }
+      e.currentTarget.disabled = true;
+      e.currentTarget.textContent = "Repérage vérifié ✓";
+      var resZone = document.getElementById("step1Result");
+      var msg = (correctCount===totalTargets) ? "Bien vu ! Tu as repéré le passage clé." : (correctCount>0 ? "Pas mal : "+correctCount+"/"+totalTargets+" repéré(s). Regarde les contours pointillés pour ce qui manque." : "Regarde les contours pointillés : c'est là qu'est la figure de style.");
+      resZone.innerHTML = '<p class="step-msg">'+msg+'</p>';
+      document.getElementById("step2Zone").classList.add("show");
+    });
+
+    var toks2 = panel.querySelectorAll("#gameSentence .tok.clickable");
+    for(var kIdx=0;kIdx<toks2.length;kIdx++){
+      toks2[kIdx].addEventListener("click", function(e){
+        var btn = document.getElementById("checkStep1Btn");
+        if(btn.disabled){ return; }
+        e.currentTarget.classList.toggle("picked");
+      });
+    }
+
+    var figOpts = panel.querySelectorAll(".fig-opt");
+    for(var r=0;r<figOpts.length;r++){
+      figOpts[r].addEventListener("click", function(e){
+        var allOpts = panel.querySelectorAll(".fig-opt");
+        for(var x=0;x<allOpts.length;x++){ allOpts[x].disabled = true; }
+        var correct = e.currentTarget.getAttribute("data-correct")==="1";
+        if(correct){
+          e.currentTarget.classList.add("correct");
+        } else {
+          e.currentTarget.classList.add("wrong");
+          for(var y=0;y<allOpts.length;y++){ if(allOpts[y].getAttribute("data-correct")==="1"){ allOpts[y].classList.add("correct"); } }
+        }
+        document.getElementById("step3Zone").classList.add("show");
+      });
+    }
+
+    document.getElementById("startQuizBtn").addEventListener("click", function(){
+      renderQuiz(n);
+    });
+
+    document.getElementById("defiBtn").addEventListener("click", function(){
+      document.getElementById("defiZone").classList.toggle("show");
+    });
+    document.getElementById("defiSaveBtn").addEventListener("click", function(){
+      var text = document.getElementById("defiText").value;
+      var checks = [];
+      var checkboxes = panel.querySelectorAll(".defi-check");
+      for(var ci=0; ci<checkboxes.length; ci++){ checks[ci] = checkboxes[ci].checked; }
+      defis[n.id] = {text:text, checks:checks};
+      saveDefis();
+      var msg = document.getElementById("defiSavedMsg");
+      msg.style.display = "inline";
+      setTimeout(function(){ msg.style.display = "none"; }, 2000);
+    });
+
+    updateHud();
+    renderGrid();
+  }
+
+  function closeOverlay(){
+    overlay.classList.remove("show");
+  }
+  overlay.addEventListener("click", function(e){
+    if(e.target === overlay){ closeOverlay(); }
+  });
+
+  function renderQuiz(n){
+    var answered = 0;
+    var correctCount = 0;
+    var total = n.quiz.length;
+    var col = CAT_COLORS[n.cat];
+
+    var html = '<div class="panel-head" style="background:'+col+';">'+
+      '<div><div class="tag">Quiz</div><h2>'+n.title+'</h2></div>'+
+      '<button class="close-btn" id="closeBtn">✕</button>'+
+      '</div><div class="panel-body" id="quizBody"></div>';
+    panel.innerHTML = html;
+    document.getElementById("closeBtn").addEventListener("click", closeOverlay);
+
+    var body = document.getElementById("quizBody");
+    var qHtml = "";
+    for(var i=0;i<n.quiz.length;i++){
+      qHtml += '<div class="quiz-q" data-qi="'+i+'">'+
+        '<div class="qtext">'+(i+1)+'. '+n.quiz[i].q+'</div>'+
+        '<div class="opts">';
+      for(var j=0;j<n.quiz[i].options.length;j++){
+        qHtml += '<button class="opt" data-oi="'+j+'">'+n.quiz[i].options[j]+'</button>';
+      }
+      qHtml += '</div><div class="explication" id="exp-'+i+'">'+n.quiz[i].exp+'</div></div>';
+    }
+    qHtml += '<div id="quizResultZone"></div>';
+    body.innerHTML = qHtml;
+
+    var qBlocks = body.querySelectorAll(".quiz-q");
+    for(var qi=0;qi<qBlocks.length;qi++){
+      (function(block){
+        var idx = parseInt(block.getAttribute("data-qi"),10);
+        var opts = block.querySelectorAll(".opt");
+        for(var oi=0; oi<opts.length; oi++){
+          opts[oi].addEventListener("click", function(e){
+            var chosen = parseInt(e.currentTarget.getAttribute("data-oi"),10);
+            var correct = n.quiz[idx].correct;
+            var allOpts = block.querySelectorAll(".opt");
+            for(var x=0;x<allOpts.length;x++){ allOpts[x].disabled = true; }
+            if(chosen === correct){
+              e.currentTarget.classList.add("correct");
+              correctCount++;
+            } else {
+              e.currentTarget.classList.add("wrong");
+              allOpts[correct].classList.add("correct");
+            }
+            document.getElementById("exp-"+idx).classList.add("show");
+            answered++;
+            if(answered === total){
+              finishQuiz(n, correctCount, total);
+            }
+          });
+        }
+      })(qBlocks[qi]);
+    }
+  }
+
+  function finishQuiz(n, correctCount, total){
+    var zone = document.getElementById("quizResultZone");
+    var gained = correctCount * 10;
+    markQuizDone(n.id, gained);
+    var msg = correctCount === total ? "Sans-faute ! Figure maîtrisée." : (correctCount >= total/2 ? "Bien joué, la figure est presque acquise." : "Relis la fiche puis retente le quiz.");
+    zone.innerHTML = '<div class="quiz-result"><div class="score">'+correctCount+' / '+total+'</div><p>'+msg+' (+'+gained+' XP)</p></div>';
+  }
+
+  function updateHud(){
+    var readCount = Object.keys(progress.read||{}).length;
+    var quizCount = Object.keys(progress.quiz||{}).length;
+    document.getElementById("hud-read").textContent = readCount;
+    document.getElementById("hud-quiz").textContent = quizCount;
+    document.getElementById("hud-xp").textContent = progress.xp||0;
+    var pct = Math.round((quizCount / FIGURES.length) * 100);
+    globalBar.style.width = pct + "%";
+    renderBadges(quizCount);
+  }
+
+  var BADGE_DEFS = [
+    {icon:"🪶", threshold:1, title:"Première figure invoquée"},
+    {icon:"📖", threshold:5, title:"Apprenti styliste"},
+    {icon:"🔮", threshold:10, title:"Sorcier des mots"},
+    {icon:"✨", threshold:14, title:"Plume envoûtante"},
+    {icon:"👑", threshold:18, title:"Maître du Grimoire"}
+  ];
+  function renderBadges(quizCount){
+    var html = "";
+    for(var i=0;i<BADGE_DEFS.length;i++){
+      var b = BADGE_DEFS[i];
+      var unlocked = quizCount >= b.threshold;
+      html += '<div class="badge'+(unlocked?' unlocked':'')+'" title="'+b.title+' ('+b.threshold+' quiz)">'+b.icon+'</div>';
+    }
+    badgesRow.innerHTML = html;
+  }
+
+  function launchFinalQuiz(){
+    var pool = FIGURES.slice();
+    shuffle(pool);
+    var picked = pool.slice(0, Math.min(15, pool.length));
+    var questions = [];
+    for(var i=0;i<picked.length;i++){
+      var nq = picked[i].quiz[0];
+      questions.push({title:picked[i].title, q:nq.q, options:nq.options, correct:nq.correct, exp:nq.exp});
+    }
+    var answered = 0, correctCount = 0;
+    var html = '<div class="panel-head"><div><div class="tag">Grand contrôle</div><h2>15 questions mêlées</h2></div><button class="close-btn" id="closeBtn">✕</button></div><div class="panel-body" id="finalBody"></div>';
+    panel.innerHTML = html;
+    document.getElementById("closeBtn").addEventListener("click", closeOverlay);
+    var body = document.getElementById("finalBody");
+    var qHtml = "";
+    for(var i2=0;i2<questions.length;i2++){
+      qHtml += '<div class="quiz-q" data-qi="'+i2+'">'+
+        '<div class="qtext">'+(i2+1)+'. ['+questions[i2].title+'] '+questions[i2].q+'</div><div class="opts">';
+      for(var j2=0;j2<questions[i2].options.length;j2++){
+        qHtml += '<button class="opt" data-oi="'+j2+'">'+questions[i2].options[j2]+'</button>';
+      }
+      qHtml += '</div><div class="explication" id="fexp-'+i2+'">'+questions[i2].exp+'</div></div>';
+    }
+    qHtml += '<div id="finalResultZone"></div>';
+    body.innerHTML = qHtml;
+
+    var qBlocks = body.querySelectorAll(".quiz-q");
+    for(var k2=0;k2<qBlocks.length;k2++){
+      (function(block){
+        var idx = parseInt(block.getAttribute("data-qi"),10);
+        var opts = block.querySelectorAll(".opt");
+        for(var oi=0; oi<opts.length; oi++){
+          opts[oi].addEventListener("click", function(e){
+            var chosen = parseInt(e.currentTarget.getAttribute("data-oi"),10);
+            var correct = questions[idx].correct;
+            var allOpts = block.querySelectorAll(".opt");
+            for(var x=0;x<allOpts.length;x++){ allOpts[x].disabled = true; }
+            if(chosen === correct){ e.currentTarget.classList.add("correct"); correctCount++; }
+            else { e.currentTarget.classList.add("wrong"); allOpts[correct].classList.add("correct"); }
+            document.getElementById("fexp-"+idx).classList.add("show");
+            answered++;
+            if(answered === questions.length){
+              var zone = document.getElementById("finalResultZone");
+              var gained = correctCount * 5;
+              progress.xp = (progress.xp||0) + gained;
+              saveProgress();
+              updateHud();
+              zone.innerHTML = '<div class="quiz-result"><div class="score">'+correctCount+' / '+questions.length+'</div><p>Contrôle terminé (+'+gained+' XP)</p></div>';
+            }
+          });
+        }
+      })(qBlocks[k2]);
+    }
+  }
+  function shuffle(arr){
+    for(var i=arr.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var tmp = arr[i]; arr[i]=arr[j]; arr[j]=tmp;
+    }
+  }
+  finalQuizBtn.addEventListener("click", function(){
+    overlay.classList.add("show");
+    launchFinalQuiz();
+  });
+
+  document.getElementById("mnemoAllBtn").addEventListener("click", function(){
+    overlay.classList.add("show");
+    renderAllFigures();
+  });
+
+  function renderAllFigures(){
+    var html = '<div class="panel-head"><div><div class="tag">Référence</div><h2>Toutes les figures de style</h2></div><button class="close-btn" id="closeBtn">✕</button></div><div class="panel-body">';
+    for(var i=0;i<CATS.length;i++){
+      var cat = CATS[i];
+      var col = CAT_COLORS[cat.id];
+      var items = [];
+      for(var k=0;k<FIGURES.length;k++){ if(FIGURES[k].cat===cat.id){ items.push(FIGURES[k]); } }
+      if(items.length===0){ continue; }
+      html += '<div class="section-label" style="color:'+col+';">'+cat.name+'</div>';
+      for(var m=0;m<items.length;m++){
+        html += '<div class="mnemo-list-item" style="border-left:3px solid '+col+';">'+
+          '<div class="mli-title">'+items[m].title+'</div>'+
+          '<div class="mli-text">'+items[m].mnemo+'</div>'+
+        '</div>';
+      }
+    }
+    html += '</div>';
+    panel.innerHTML = html;
+    document.getElementById("closeBtn").addEventListener("click", closeOverlay);
+  }
+
+  function renderClassLegend(){
+    var html = "";
+    for(var i=0;i<CATS.length;i++){
+      var c = CATS[i];
+      html += '<span class="legend-chip"><span class="legend-dot" style="background:'+CAT_COLORS[c.id]+';"></span>'+c.name+'</span>';
+    }
+    return html;
+  }
+
+  var DYS_STATE_KEY = "grimoireStyleDys";
+  var dysToggle = document.getElementById("dysToggle");
+  function applyDysState(on){
+    document.body.classList.toggle("dys-mode", on);
+    dysToggle.classList.toggle("active", on);
+  }
+  (function initDys(){
+    var on = false;
+    try{ on = localStorage.getItem(DYS_STATE_KEY)==="1"; }catch(e){}
+    applyDysState(on);
+  })();
+  dysToggle.addEventListener("click", function(){
+    var on = !document.body.classList.contains("dys-mode");
+    applyDysState(on);
+    try{ localStorage.setItem(DYS_STATE_KEY, on?"1":"0"); }catch(e){}
+  });
+
+
+  /* A bite-sized replayable mission uses the original verified question bank. */
+  var LAND_META={
+    analogie:{icon:"🌙",name:"Forêt des images",color:"linear-gradient(135deg,#6c49ba,#9572df)"},
+    insistance:{icon:"🔥",name:"Volcan des échos",color:"linear-gradient(135deg,#e15270,#f18e77)"},
+    opposition:{icon:"⚡",name:"Citadelle des contraires",color:"linear-gradient(135deg,#2872cb,#53b4d9)"},
+    substitution:{icon:"🍃",name:"Jardin des secrets",color:"linear-gradient(135deg,#108b76,#65bb95)"},
+    sonore:{icon:"🎵",name:"Tour des sons",color:"linear-gradient(135deg,#8d4cae,#d47fc4)"}
+  };
+  function renderLands(){
+    var target=document.getElementById("questLands");
+    target.innerHTML=CATS.map(function(c){
+      var meta=LAND_META[c.id], all=FIGURES.filter(function(f){return f.cat===c.id;});
+      var done=all.filter(function(f){return !!progress.quiz[f.id];}).length;
+      return '<button class="quest-land" style="background:'+meta.color+'" data-land="'+c.id+'"><span class="land-icon">'+meta.icon+'</span><b>'+meta.name+'</b><small>'+done+' / '+all.length+' sorts appris</small></button>';
+    }).join('');
+    Array.prototype.forEach.call(target.querySelectorAll('button'),function(b){b.addEventListener('click',function(){currentCat=b.getAttribute('data-land');renderNav();renderGrid();document.getElementById('catHeading').scrollIntoView({behavior:'smooth',block:'start'});});});
+  }
+  function updateQuestStatus(){
+    var done=FIGURES.filter(function(f){return !!progress.quiz[f.id];}).length;
+    document.getElementById('questStatus').textContent=done===18?'Bravo ! Les 18 sorts sont étudiés. Continue à jouer pour consolider tes pouvoirs.':done+' sort'+(done>1?'s':'')+' sur 18 étudié'+(done>1?'s':'')+'. Ton prochain objectif : réussir le quiz d’une nouvelle figure et gagner des XP.';
+    renderLands();
+  }
+  document.getElementById('nextSpell').addEventListener('click',function(){
+    var next=FIGURES.find(function(f){return !progress.quiz[f.id];})||FIGURES[0];openFigure(next.id);
+  });
+  document.getElementById('quickMission').addEventListener('click',function(){
+    var pool=FIGURES.filter(levelAllowed).slice();if(pool.length<5)pool=FIGURES.slice();shuffle(pool);
+    var chosen=pool.slice(0,5), qi=0, score=0;
+    overlay.classList.add('show');
+    function show(){
+      if(qi>=chosen.length){
+        var xp=score*5;progress.xp=(progress.xp||0)+xp;saveProgress();updateHud();
+        panel.innerHTML='<div class="panel-head"><div><div class="tag">Mission terminée</div><h2>🏆 Récompense obtenue !</h2></div><button class="close-btn" id="closeBtn">✕</button></div><div class="panel-body"><div class="quiz-result"><div class="score">'+score+' / 5</div><p>Tu as gagné '+xp+' XP. Chaque réponse est une étape de plus dans ton aventure.</p><button class="quiz-btn" id="againMission">Rejouer une mission</button></div></div>';
+        document.getElementById('closeBtn').addEventListener('click',closeOverlay);
+        document.getElementById('againMission').addEventListener('click',function(){closeOverlay();document.getElementById('quickMission').click();});
+        return;
+      }
+      var f=chosen[qi], q=f.quiz[Math.floor(Math.random()*f.quiz.length)];
+      panel.innerHTML='<div class="panel-head"><div><div class="tag">Mission éclair · '+(qi+1)+' / 5</div><h2>⚡ Le duel des mots</h2></div><button class="close-btn" id="closeBtn">✕</button></div><div class="panel-body"><div class="quiz-q"><p class="qtext">'+q.q+'</p><div id="missionOpts">'+q.options.map(function(o,i){return '<button class="opt" data-i="'+i+'">'+o+'</button>';}).join('')+'</div><div class="explication" id="missionExpl">'+q.exp+'</div><button style="display:none" class="quiz-btn" id="missionNext">'+(qi===4?'Voir ma récompense':'Question suivante →')+'</button></div></div>';
+      document.getElementById('closeBtn').addEventListener('click',closeOverlay);
+      Array.prototype.forEach.call(document.querySelectorAll('#missionOpts .opt'),function(btn){btn.addEventListener('click',function(){
+        var val=Number(btn.getAttribute('data-i'));Array.prototype.forEach.call(document.querySelectorAll('#missionOpts .opt'),function(b){b.disabled=true;if(Number(b.getAttribute('data-i'))===q.correct)b.classList.add('correct');});
+        if(val===q.correct)score++;else btn.classList.add('wrong');
+        document.getElementById('missionExpl').classList.add('show');document.getElementById('missionNext').style.display='block';
+      });});
+      document.getElementById('missionNext').addEventListener('click',function(){qi++;show();});
+    }
+    show();
+  });
+  var originalUpdateHud=updateHud;
+  updateHud=function(){originalUpdateHud();updateQuestStatus();};
+
+  document.getElementById("legendRow").innerHTML = renderClassLegend();
+  renderLevelRow();
+  renderNav();
+  renderGrid();
+  updateHud();
+})();
+
+</script>
+
+</body>
+</html>
