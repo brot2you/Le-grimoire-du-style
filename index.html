@@ -290,6 +290,26 @@ body.dys-mode .quest-welcome,body.dys-mode .quest-side{font-family:'Lexend',sans
 @media(max-width:460px){.quest-lands{grid-template-columns:repeat(2,minmax(0,1fr))}.quest-welcome{gap:12px}.quest-mascot{font-size:43px}.quest-welcome h2{font-size:18px}.quest-welcome p{font-size:11px}.grid{grid-template-columns:1fr 1fr;gap:10px}.card{min-height:174px;padding:12px}.card h3{font-size:13px}.card p{font-size:10px}.card .lvl-badge{right:7px;top:9px}.card .catpill{font-size:8px;max-width:105px}.card:before{font-size:21px}}
 @media(max-width:360px){.grid{grid-template-columns:1fr}}
 
+
+/* MAGIC QUEST V3 — illustrated academy UI */
+body{background:#f5f1ff;background-image:radial-gradient(ellipse at 10% 6%,#dfd3ff,transparent 35%),radial-gradient(ellipse at 86% 34%,#d4ebff,transparent 38%)}
+header.hero{background:linear-gradient(90deg,#120b2ff2,#26144de5),url('assets/academy.webp') center/cover;border-bottom:4px solid #f4c76b}
+.quest-welcome{background:radial-gradient(circle at 24% 54%,#8254b466,transparent 44%),linear-gradient(115deg,#180d35,#3b1d67 69%,#172b57);border:2px solid #b78b50;box-shadow:0 9px 0 #28205530,0 18px 34px #26104430;min-height:232px}
+.quest-mascot{width:170px;height:190px;object-fit:cover;object-position:50% 48%;border-radius:26px;border:3px solid #f8d78e;box-shadow:0 8px 26px #10072388;filter:none}
+.quest-welcome h2{color:#ffe2a1;text-shadow:0 2px 7px #0005}
+.quest-cta,.quiz-btn,.finalquiz-btn{background:linear-gradient(180deg,#7844c5,#49217e);border:2px solid #f4d18c;color:#fff8e7;box-shadow:0 4px 0 #32194b}
+.quest-cta{background:linear-gradient(180deg,#8b4ee2,#55238e);color:white}
+.quest-side{background:linear-gradient(145deg,#fff7df,#fffefb);border:2px solid #d8b66c;box-shadow:0 7px 0 #b99e6a33}
+.quest-side h3{font-family:'Cinzel',serif}
+.quest-lands{gap:13px}.quest-land{position:relative;overflow:hidden;padding:0;min-height:195px;border:3px solid #e9bf72;border-radius:19px;background:#271a53!important;isolation:isolate;box-shadow:0 7px 0 #2a194c30,0 10px 24px #2515482b}
+.quest-land .land-scene{position:absolute;inset:0;background-image:linear-gradient(0deg,#140927 0%,#170d3199 31%,#170d3100 78%),var(--realm);background-size:cover;background-position:center;transition:transform .25s}
+.quest-land:hover .land-scene{transform:scale(1.075)}.quest-land .land-details{position:absolute;bottom:11px;left:6px;right:6px;z-index:2;text-shadow:0 2px 6px #000;display:block}.quest-land b{font-family:'Cinzel',serif;font-size:12px;color:#fff4d7}.quest-land small{color:#fff;font-size:11px;font-family:'Lexend',sans-serif}
+.quest-lands-title{margin-top:22px}.card{background:#fffcf3;border-color:#d9c8a7;box-shadow:0 6px 0 #c7b9dc77}.card:hover{box-shadow:0 9px 14px #35204a30}
+.card:before{content:'✧';font-size:28px;color:#bf94e5}
+.panel{background:#fff8e9}.panel-head{background:linear-gradient(130deg,#24133f,#503180)!important;border-bottom:3px solid #daa952}.panel-body{background:#fff9ed}.opt{background:#fffdf6;border:2px solid #e3d5bb;font-size:14px;padding:12px 13px;margin-bottom:9px}.opt:hover{border-color:#7048ad}.opt.correct{background:#e2f6d8}.opt.wrong{background:#ffe7df}
+@media(max-width:750px){.quest-welcome{min-height:unset}.quest-mascot{width:132px;height:155px}.quest-land{min-height:165px}}
+@media(max-width:460px){.quest-welcome{flex-direction:column;text-align:center;padding:17px}.quest-mascot{width:145px;height:148px}.quest-cta{max-width:100%;font-size:12px}.quest-land{min-height:170px}.quest-land b{font-size:11px}.quest-land small{font-size:10px}.quest-lands{gap:10px}}
+@media(prefers-reduced-motion:reduce){.quest-land .land-scene{transition:none}}
 </style>
 </head>
 <body>
@@ -309,10 +329,10 @@ body.dys-mode .quest-welcome,body.dys-mode .quest-side{font-family:'Lexend',sans
   </header>
 
   <section class="quest-intro" aria-label="Commencer l’aventure">
-<div class="quest-welcome"><div class="quest-mascot" aria-hidden="true">🧙‍♂️</div><div><h2>Bienvenue, apprenti mage !</h2><p>Les mots ont perdu leur magie. Explore les cinq royaumes, reconnais les figures de style et collectionne tes pouvoirs !</p><button class="quest-cta" id="quickMission">⚡ Mission surprise · 5 questions</button></div></div>
-<div class="quest-side"><h3>🎒 Ton carnet d'aventurier</h3><p id="questStatus">Tes sorts maîtrisés et ton prochain objectif apparaîtront ici.</p><button class="quest-secondary" id="nextSpell">✨ Découvrir mon prochain sort</button></div>
+<div class="quest-welcome"><img class="quest-mascot" src="assets/guide.webp" alt="Un jeune magicien guide l’aventure"><div><h2>Bienvenue à l’Académie du Style !</h2><p>Ton grimoire attend ses 18 sorts ! Explore les cinq royaumes, relève les défis et développe tes pouvoirs d’écriture.</p><button class="quest-cta" id="quickMission">⚡ Mission surprise · 5 questions</button></div></div>
+<div class="quest-side"><h3>Mon carnet d’aventurier</h3><p id="questStatus">Tes sorts maîtrisés et ton prochain objectif apparaîtront ici.</p><button class="quest-secondary" id="nextSpell">✨ Découvrir mon prochain sort</button></div>
 </section>
-<h2 class="quest-lands-title">🗺️ Les cinq royaumes magiques</h2>
+<h2 class="quest-lands-title">Les cinq royaumes magiques</h2>
 <div class="quest-lands" id="questLands"></div>
 
   <nav class="cats" id="cats"></nav>
@@ -325,7 +345,7 @@ body.dys-mode .quest-welcome,body.dys-mode .quest-side{font-family:'Lexend',sans
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="globalBar"></div></div>
     <p style="font-size:11px;font-weight:600;color:var(--ink);font-family:'IBM Plex Mono',monospace;margin:8px 0 16px;">PROGRESSION GÉNÉRALE</p>
     <div class="launch-btns">
-      <button class="finalquiz-btn" id="finalQuizBtn">Lancer le grand contrôle (15 questions)</button>
+      <button class="finalquiz-btn" id="finalQuizBtn">Lancer le grand défi (15 questions)</button>
       <button class="mnemo-btn" id="mnemoAllBtn">Toutes les figures</button>
     </div>
     <div class="badges-row" id="badgesRow"></div>
@@ -1575,7 +1595,7 @@ body.dys-mode .quest-welcome,body.dys-mode .quest-side{font-family:'Lexend',sans
     var col = CAT_COLORS[n.cat];
 
     var html = '<div class="panel-head" style="background:'+col+';">'+
-      '<div><div class="tag">Quiz</div><h2>'+n.title+'</h2></div>'+
+      '<div><div class="tag">Épreuve de sort</div><h2>À toi de reconnaître les figures !</h2></div>'+
       '<button class="close-btn" id="closeBtn">✕</button>'+
       '</div><div class="panel-body" id="quizBody"></div>';
     panel.innerHTML = html;
@@ -1670,14 +1690,14 @@ body.dys-mode .quest-welcome,body.dys-mode .quest-side{font-family:'Lexend',sans
       questions.push({title:picked[i].title, q:nq.q, options:nq.options, correct:nq.correct, exp:nq.exp});
     }
     var answered = 0, correctCount = 0;
-    var html = '<div class="panel-head"><div><div class="tag">Grand contrôle</div><h2>15 questions mêlées</h2></div><button class="close-btn" id="closeBtn">✕</button></div><div class="panel-body" id="finalBody"></div>';
+    var html = '<div class="panel-head"><div><div class="tag">Grand défi</div><h2>15 énigmes magiques</h2></div><button class="close-btn" id="closeBtn">✕</button></div><div class="panel-body" id="finalBody"></div>';
     panel.innerHTML = html;
     document.getElementById("closeBtn").addEventListener("click", closeOverlay);
     var body = document.getElementById("finalBody");
     var qHtml = "";
     for(var i2=0;i2<questions.length;i2++){
       qHtml += '<div class="quiz-q" data-qi="'+i2+'">'+
-        '<div class="qtext">'+(i2+1)+'. ['+questions[i2].title+'] '+questions[i2].q+'</div><div class="opts">';
+        '<div class="qtext">'+(i2+1)+'. '+questions[i2].q+'</div><div class="opts">';
       for(var j2=0;j2<questions[i2].options.length;j2++){
         qHtml += '<button class="opt" data-oi="'+j2+'">'+questions[i2].options[j2]+'</button>';
       }
@@ -1791,7 +1811,7 @@ body.dys-mode .quest-welcome,body.dys-mode .quest-side{font-family:'Lexend',sans
     target.innerHTML=CATS.map(function(c){
       var meta=LAND_META[c.id], all=FIGURES.filter(function(f){return f.cat===c.id;});
       var done=all.filter(function(f){return !!progress.quiz[f.id];}).length;
-      return '<button class="quest-land" style="background:'+meta.color+'" data-land="'+c.id+'"><span class="land-icon">'+meta.icon+'</span><b>'+meta.name+'</b><small>'+done+' / '+all.length+' sorts appris</small></button>';
+      return '<button class="quest-land" style="--realm:url(assets/'+c.id+'.webp);background:'+meta.color+'" data-land="'+c.id+'"><span class="land-scene" aria-hidden="true"></span><span class="land-details"><b>'+meta.name+'</b><small>'+done+' / '+all.length+' sorts appris</small></span></button>';
     }).join('');
     Array.prototype.forEach.call(target.querySelectorAll('button'),function(b){b.addEventListener('click',function(){currentCat=b.getAttribute('data-land');renderNav();renderGrid();document.getElementById('catHeading').scrollIntoView({behavior:'smooth',block:'start'});});});
   }
