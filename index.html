@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Grimoire du Style — Quest</title>
+<title>Le Grimoire du Style — Magic Quest V4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -310,6 +310,106 @@ header.hero{background:linear-gradient(90deg,#120b2ff2,#26144de5),url('assets/ac
 @media(max-width:750px){.quest-welcome{min-height:unset}.quest-mascot{width:132px;height:155px}.quest-land{min-height:165px}}
 @media(max-width:460px){.quest-welcome{flex-direction:column;text-align:center;padding:17px}.quest-mascot{width:145px;height:148px}.quest-cta{max-width:100%;font-size:12px}.quest-land{min-height:170px}.quest-land b{font-size:11px}.quest-land small{font-size:10px}.quest-lands{gap:10px}}
 @media(prefers-reduced-motion:reduce){.quest-land .land-scene{transition:none}}
+
+
+/* MAGIC QUEST V4 — asset-rich UI refresh */
+:root{
+  --ui-purple:url('assets/ui/btn_purple_long.png');
+  --ui-blue:url('assets/ui/btn_blue_long.png');
+  --ui-gold:url('assets/ui/btn_gold_long.png');
+}
+.wrap{max-width:1180px;padding:0 20px 90px}
+header.hero{padding:32px 20px 38px;border-bottom-width:5px;border-radius:0 0 28px 28px;box-shadow:0 18px 40px #1d0f3540}
+header.hero:before{content:'';position:absolute;left:22px;bottom:-6px;width:132px;height:132px;background:url('assets/ui/orb.png') center/contain no-repeat;opacity:.9;pointer-events:none}
+.title{font-size:42px}
+.subtitle{max-width:690px;font-size:16px;color:#fff5dc;text-shadow:0 2px 6px rgba(0,0,0,.32)}
+.eyebrow{background:rgba(11,9,30,.42);display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,232,187,.25)}
+.hud{gap:12px;margin-top:18px}.hud-item{border-radius:18px;padding:10px 14px;background:rgba(11,8,25,.56);border:1px solid rgba(255,219,147,.45);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.level-row{gap:10px;margin-top:20px}.level-pill{border-radius:20px;padding:8px 14px;background:#ffffff14;border:1px solid rgba(255,213,123,.45);box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.level-pill.active{background:#ffd278;color:#46295d}
+
+.quest-intro{margin-top:4px;gap:18px;align-items:stretch}
+.quest-welcome,.quest-side{border-radius:26px;overflow:hidden;position:relative}
+.quest-welcome{display:grid;grid-template-columns:220px 1fr;gap:18px;padding:22px 24px 22px 18px;min-height:254px}
+.quest-welcome:before{content:'';position:absolute;right:16px;bottom:8px;width:150px;height:150px;background:url('assets/ui/books_stack.png') center/contain no-repeat;opacity:.22;pointer-events:none}
+.quest-mascot{width:200px;height:214px;object-fit:cover;object-position:50% 50%;border-radius:22px;background:linear-gradient(180deg,#3f246d,#140a2f);box-shadow:0 12px 28px rgba(0,0,0,.42);border:2px solid rgba(255,217,138,.75)}
+.quest-welcome h2{font-size:28px;line-height:1.15;margin-bottom:10px}
+.quest-welcome p,.quest-side p{font-family:'Lexend',sans-serif;font-size:14px;line-height:1.65}
+.quest-side{padding:24px 22px 26px;min-height:254px}
+.quest-side:after{content:'';position:absolute;right:-5px;bottom:-8px;width:120px;height:120px;background:url('assets/ui/chest.png') center/contain no-repeat;opacity:.98;pointer-events:none}
+.quest-side h3{position:relative;padding-left:42px;margin-bottom:12px}
+.quest-side h3:before{content:'';position:absolute;left:0;top:-4px;width:34px;height:34px;background:url('assets/ui/icon_scroll.png') center/contain no-repeat}
+#questStatus{padding-right:100px}
+.quest-lands-title{display:flex;align-items:center;gap:12px;font-size:28px;color:#382458}
+.quest-lands-title:before{content:'';width:40px;height:40px;background:url('assets/ui/portal_round.png') center/contain no-repeat;flex:none}
+.quest-lands{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-bottom:24px}
+.quest-land{min-height:228px;border:0;border-radius:22px;background:none!important;box-shadow:0 10px 24px rgba(25,14,48,.28),0 4px 0 rgba(53,26,85,.25)}
+.quest-land .land-scene{background-image:linear-gradient(0deg,#160b2b 0%,#160b2b55 31%,#160b2b00 80%),var(--realm);background-size:cover;background-position:center center}
+.quest-land .land-details{left:10px;right:10px;bottom:12px;padding:10px 12px;border-radius:16px;background:linear-gradient(180deg,#16102cbf,#1c1235da);border:1px solid rgba(255,214,137,.35);backdrop-filter:blur(2px)}
+.quest-land b{font-size:13px;color:#fff6de}.quest-land small{font-size:11px;color:#f8ebc5}
+
+nav.cats{gap:10px;margin-bottom:16px}.cat-tab{border-radius:18px;padding:8px 13px 8px 9px;border:2px solid #e6daf5;background:linear-gradient(180deg,#fff,#f6f0fe);box-shadow:0 5px 12px rgba(59,37,97,.08);gap:7px}
+.cat-tab.active{color:#fff}.cat-tab .dot{display:none}.cat-icon,.nav-all-icon{width:28px;height:28px;background-position:center;background-size:contain;background-repeat:no-repeat;display:inline-block;flex:none}
+.cat-tab .count{border-radius:999px;background:#ffffffc7;padding:3px 7px;font-family:'Lexend',sans-serif}
+.cat-tab.active .count{background:#ffffff3d}
+
+.cat-heading{margin-bottom:16px}.cat-heading.with-icon{display:flex;align-items:center;justify-content:center;gap:12px}.heading-icon{width:46px;height:46px;background:center/contain no-repeat;flex:none}
+.cat-heading p{font-family:'Lexend',sans-serif;font-size:13px}
+
+.grid{gap:16px}.card{padding:14px 14px 16px;border:2px solid #e5d6bf!important;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#fffef9,#fff8eb);box-shadow:0 8px 18px rgba(58,35,91,.08)}
+.card:before{display:none}.card:hover{transform:translateY(-4px)}
+.card .card-top{display:flex;gap:12px;align-items:flex-start;padding-right:72px}
+.card-art{width:68px;height:88px;border-radius:14px;background:center/cover no-repeat;box-shadow:0 8px 18px rgba(20,10,45,.18);flex:none;border:1px solid rgba(82,54,121,.12)}
+.card-copy{flex:1;min-width:0}.card h3{font-size:17px;line-height:1.2;margin:0 0 8px}.card p{font-size:12px;line-height:1.55;max-width:unset;margin-top:6px}
+.card .catpill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px;font-size:9px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.card .catpill .mini-icon{width:16px;height:16px;background:center/contain no-repeat;display:inline-block}
+.card .lvl-badge{border-radius:999px;background:#fff0cb;padding:4px 8px;font-family:'Lexend',sans-serif;color:#553a11;box-shadow:0 2px 0 rgba(160,118,38,.18)}
+.card .done{width:12px;height:12px;right:18px;top:48px}
+
+.finalquiz-launch{position:relative;padding:28px 18px 30px 18px;border-radius:28px;overflow:hidden}
+.finalquiz-launch:before{content:'';position:absolute;left:-8px;bottom:-16px;width:144px;height:144px;background:url('assets/ui/potion_blue.png') center/contain no-repeat;opacity:.88;pointer-events:none}
+.finalquiz-launch:after{content:'';position:absolute;right:-12px;bottom:-24px;width:160px;height:160px;background:url('assets/ui/orb.png') center/contain no-repeat;opacity:.94;pointer-events:none}
+.launch-btns{position:relative;z-index:1}.badges-row{position:relative;z-index:1}.progress-bar-wrap{position:relative;z-index:1}
+.progress-bar-wrap{height:10px;border-radius:999px;background:#e4d9f7}.progress-bar-fill{border-radius:999px;background:linear-gradient(90deg,#6f3fd2,#d894ff)}
+
+.panel{border-radius:28px;background:#fffaf0;border:1px solid rgba(233,202,131,.7)}
+.panel-body{background:linear-gradient(180deg,#fff9ed,#fffefc)!important}
+.panel-head{position:relative;overflow:hidden}
+.panel-head:after{content:'';position:absolute;right:8px;bottom:-14px;width:100px;height:100px;background:url('assets/ui/scroll_seal.png') center/contain no-repeat;opacity:.13;pointer-events:none}
+.style-sheet{border-radius:18px;border:2px solid #e8dbc0;background:#fffdf7;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+.observe-q,.step-msg,.astuce,.mnemo-box,.defi-box,.mli-text,.explication{font-family:'Lexend',sans-serif}
+.defi-box{border:2px solid #eadab5;background:#fffdfa;border-radius:18px}
+.defi-box textarea{border-radius:14px;border:2px solid #e5d5b3;background:#fffefc;font-family:'Lexend',sans-serif}
+.opt{border-radius:16px;background:#fffef9}
+
+.quest-cta,.quest-secondary,.quiz-btn,.finalquiz-btn,.mnemo-btn,.defi-btn,.reveal-btn,.hint-btn,.defi-save,#missionNext,#againMission{position:relative;border:0!important;background-color:transparent!important;background-repeat:no-repeat;background-position:center;background-size:100% 100%;color:#fffbe8!important;text-shadow:0 1px 1px rgba(0,0,0,.3);box-shadow:none!important;padding:16px 20px 16px 52px;min-height:58px;font-family:'Lexend',sans-serif;font-weight:700;letter-spacing:.01em;border-radius:0}
+.quest-cta,.quiz-btn,.finalquiz-btn,.defi-save,#missionNext,#againMission{background-image:var(--ui-purple)}
+.quest-secondary,.mnemo-btn,.defi-btn,.reveal-btn{background-image:var(--ui-blue)}
+.hint-btn{background-image:var(--ui-gold);color:#543100!important;text-shadow:none;padding-left:52px}
+.quest-secondary{color:#fffbe8!important;width:100%;max-width:320px}
+.reveal-btn,.mnemo-btn,.defi-btn{width:100%}
+#quickMission::before,#nextSpell::before,#finalQuizBtn::before,#mnemoAllBtn::before,#startQuizBtn::before,#defiBtn::before,.hint-btn::before,.reveal-btn::before,.defi-save::before,#missionNext::before,#againMission::before{content:'';position:absolute;left:15px;top:50%;transform:translateY(-50%);width:26px;height:26px;background-position:center;background-size:contain;background-repeat:no-repeat}
+#quickMission::before{background-image:url('assets/ui/icon_circle_sonore.png')}
+#nextSpell::before{background-image:url('assets/ui/icon_compass.png')}
+#finalQuizBtn::before{background-image:url('assets/ui/icon_trophy.png')}
+#mnemoAllBtn::before{background-image:url('assets/ui/icon_scroll.png')}
+#startQuizBtn::before{background-image:url('assets/ui/btn_play_round.png')}
+#defiBtn::before{background-image:url('assets/ui/feather_ink.png')}
+.hint-btn::before{background-image:url('assets/ui/badge_star_round.png')}
+.reveal-btn::before{background-image:url('assets/ui/btn_check_round.png')}
+.defi-save::before{background-image:url('assets/ui/btn_check_round.png')}
+#missionNext::before,#againMission::before{background-image:url('assets/ui/btn_next_round.png')}
+
+.figure-topcard{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;background:linear-gradient(180deg,#fffdf8,#fff5df);border:2px solid #eadab1;border-radius:18px;padding:12px 14px;margin-bottom:18px;box-shadow:0 6px 16px rgba(74,54,110,.08)}
+.figure-art{width:98px;height:126px;border-radius:16px;background:center/cover no-repeat;border:1px solid rgba(74,54,110,.12);box-shadow:0 10px 18px rgba(30,12,62,.16)}
+.figure-topcard h3{font-family:'Cinzel',serif;font-size:18px;margin:0 0 4px;color:#3d245c}
+.figure-topcard p{margin:0;font-family:'Lexend',sans-serif;font-size:13px;line-height:1.55;color:#5c476f}
+.figure-topcard .tagline{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8d6d2b;font-weight:700;margin-bottom:6px}
+
+@media (max-width:920px){.quest-lands{grid-template-columns:repeat(3,minmax(0,1fr))}.quest-welcome{grid-template-columns:170px 1fr}.quest-mascot{width:160px;height:186px}.quest-side{min-height:unset}}
+@media (max-width:680px){.quest-intro{grid-template-columns:1fr}.quest-side{order:2}.quest-welcome{grid-template-columns:1fr;text-align:center}.quest-mascot{margin:0 auto}.quest-side h3{padding-left:42px;text-align:left}.quest-lands{grid-template-columns:repeat(2,minmax(0,1fr))}.card .card-top{padding-right:58px}.quest-side:after{width:92px;height:92px}.finalquiz-launch:before,.finalquiz-launch:after{opacity:.45}}
+@media (max-width:460px){.wrap{padding:0 12px 70px}.title{font-size:32px}.subtitle{font-size:14px}.quest-welcome,.quest-side,.finalquiz-launch,.panel{border-radius:22px}.quest-mascot{width:150px;height:170px}.quest-lands{gap:10px}.quest-land{min-height:186px}.grid{grid-template-columns:1fr 1fr;gap:12px}.card .card-top{flex-direction:column;padding-right:44px;gap:8px}.card-art{width:100%;height:84px}.cat-tab{font-size:11px}.quest-cta,.quest-secondary,.quiz-btn,.finalquiz-btn,.mnemo-btn,.defi-btn,.reveal-btn,.hint-btn,.defi-save,#missionNext,#againMission{padding-left:46px;padding-right:16px;font-size:12px;min-height:54px}.figure-topcard{grid-template-columns:90px 1fr}.figure-art{width:84px;height:108px}}
+
 </style>
 </head>
 <body>
@@ -329,10 +429,10 @@ header.hero{background:linear-gradient(90deg,#120b2ff2,#26144de5),url('assets/ac
   </header>
 
   <section class="quest-intro" aria-label="Commencer l’aventure">
-<div class="quest-welcome"><img class="quest-mascot" src="assets/guide.webp" alt="Un jeune magicien guide l’aventure"><div><h2>Bienvenue à l’Académie du Style !</h2><p>Ton grimoire attend ses 18 sorts ! Explore les cinq royaumes, relève les défis et développe tes pouvoirs d’écriture.</p><button class="quest-cta" id="quickMission">⚡ Mission surprise · 5 questions</button></div></div>
-<div class="quest-side"><h3>Mon carnet d’aventurier</h3><p id="questStatus">Tes sorts maîtrisés et ton prochain objectif apparaîtront ici.</p><button class="quest-secondary" id="nextSpell">✨ Découvrir mon prochain sort</button></div>
+<div class="quest-welcome"><img class="quest-mascot" src="assets/ui/wizard_main.png" alt="Jeune magicien guide de l’aventure"><div><h2>Bienvenue à l’Académie magique du Style !</h2><p>Débloque 18 sorts de langage, visite cinq royaumes magiques et transforme tes révisions en aventure fantastique.</p><button class="quest-cta" id="quickMission">⚡ Mission surprise · 5 questions</button></div></div>
+<div class="quest-side"><h3>Carnet du jeune mage</h3><p id="questStatus">Tes sorts maîtrisés et ton prochain objectif apparaîtront ici.</p><button class="quest-secondary" id="nextSpell">✨ Découvrir mon prochain sort</button></div>
 </section>
-<h2 class="quest-lands-title">Les cinq royaumes magiques</h2>
+<h2 class="quest-lands-title">Les cinq royaumes du grimoire</h2>
 <div class="quest-lands" id="questLands"></div>
 
   <nav class="cats" id="cats"></nav>
@@ -345,7 +445,7 @@ header.hero{background:linear-gradient(90deg,#120b2ff2,#26144de5),url('assets/ac
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="globalBar"></div></div>
     <p style="font-size:11px;font-weight:600;color:var(--ink);font-family:'IBM Plex Mono',monospace;margin:8px 0 16px;">PROGRESSION GÉNÉRALE</p>
     <div class="launch-btns">
-      <button class="finalquiz-btn" id="finalQuizBtn">Lancer le grand défi (15 questions)</button>
+      <button class="finalquiz-btn" id="finalQuizBtn">Lancer le grand tournoi (15 questions)</button>
       <button class="mnemo-btn" id="mnemoAllBtn">Toutes les figures</button>
     </div>
     <div class="badges-row" id="badgesRow"></div>
@@ -1304,12 +1404,12 @@ header.hero{background:linear-gradient(90deg,#120b2ff2,#26144de5),url('assets/ac
     var html = "";
     var allActive = currentCat==="tous";
     var allStyle = allActive ? ' style="background:'+INK_COLOR+';border-color:'+INK_COLOR+';"' : "";
-    html += '<button class="cat-tab'+(allActive?' active':'')+'" data-cat="tous"'+allStyle+'><span class="dot" style="background:'+INK_COLOR+';"></span>Toutes les figures <span class="count">'+countAll()+'</span></button>';
+    html += '<button class="cat-tab'+(allActive?' active':'')+'" data-cat="tous"'+allStyle+'><span class="nav-all-icon" style="background-image:url('+CAT_UI.tous.icon+');"></span>Toutes les figures <span class="count">'+countAll()+'</span></button>';
     for(var i=0;i<CATS.length;i++){
       var c = CATS[i];
       var col = CAT_COLORS[c.id];
       var activeStyle = c.id===currentCat ? ' style="background:'+col+';border-color:'+col+';"' : "";
-      html += '<button class="cat-tab'+(c.id===currentCat?' active':'')+'" data-cat="'+c.id+'"'+activeStyle+'><span class="dot" style="background:'+col+';"></span>'+c.short+' <span class="count">'+countByCat(c.id)+'</span></button>';
+      html += '<button class="cat-tab'+(c.id===currentCat?' active':'')+'" data-cat="'+c.id+'"'+activeStyle+'><span class="cat-icon" style="background-image:url('+CAT_UI[c.id].icon+');"></span>'+c.short+' <span class="count">'+countByCat(c.id)+'</span></button>';
     }
     catsNav.innerHTML = html;
     var btns = catsNav.querySelectorAll(".cat-tab");
@@ -1457,7 +1557,7 @@ header.hero{background:linear-gradient(90deg,#120b2ff2,#26144de5),url('assets/ac
       '<button class="close-btn" id="closeBtn">✕</button>'+
       '</div>'+
       '<div class="panel-body">'+
-
+      '<div class="figure-topcard"><div class="figure-art" style="background-image:url('+CAT_UI[n.cat].book+');"></div><div><div class="tagline">Sort du '+cat.short.toLowerCase()+'</div><h3>'+n.title+'</h3><p>Observe un exemple, identifie la figure, retiens la règle et débloque ton pouvoir d’écriture.</p></div></div>'+
       '<div class="section-label">1. Je repère</div>'+
       '<p class="observe-q">Touche le passage de la phrase qui illustre cette figure de style, puis vérifie.</p>'+
       '<button class="hint-btn" id="hintBtn">💡 Besoin d\'un indice ?</button>'+
@@ -1799,19 +1899,28 @@ header.hero{background:linear-gradient(90deg,#120b2ff2,#26144de5),url('assets/ac
 
 
   /* A bite-sized replayable mission uses the original verified question bank. */
+
+  var CAT_UI={
+    tous:{icon:'assets/ui/badge_crown.png',book:'assets/ui/books_stack.png'},
+    analogie:{icon:'assets/ui/icon_circle_analogie.png',book:'assets/ui/book_analogie.png',land:'assets/ui/portal_analogie.png',realmName:'Royaume des Miroirs'},
+    insistance:{icon:'assets/ui/icon_circle_insistance.png',book:'assets/ui/book_insistance.png',land:'assets/ui/portal_insistance.png',realmName:'Forge des Échos'},
+    opposition:{icon:'assets/ui/icon_circle_opposition.png',book:'assets/ui/book_opposition.png',land:'assets/ui/portal_opposition.png',realmName:'Tour des Contrastes'},
+    substitution:{icon:'assets/ui/icon_circle_substitution.png',book:'assets/ui/book_substitution.png',land:'assets/ui/portal_substitution.png',realmName:'Jardin des Masques'},
+    sonore:{icon:'assets/ui/icon_circle_sonore.png',book:'assets/ui/book_sonore.png',land:'assets/ui/portal_sonore.png',realmName:'Salle des Échos'}
+  };
   var LAND_META={
-    analogie:{icon:"🌙",name:"Forêt des images",color:"linear-gradient(135deg,#6c49ba,#9572df)"},
-    insistance:{icon:"🔥",name:"Volcan des échos",color:"linear-gradient(135deg,#e15270,#f18e77)"},
-    opposition:{icon:"⚡",name:"Citadelle des contraires",color:"linear-gradient(135deg,#2872cb,#53b4d9)"},
-    substitution:{icon:"🍃",name:"Jardin des secrets",color:"linear-gradient(135deg,#108b76,#65bb95)"},
-    sonore:{icon:"🎵",name:"Tour des sons",color:"linear-gradient(135deg,#8d4cae,#d47fc4)"}
+    analogie:{name:'Royaume des Miroirs',asset:CAT_UI.analogie.land},
+    insistance:{name:'Forge des Échos',asset:CAT_UI.insistance.land},
+    opposition:{name:'Tour des Contrastes',asset:CAT_UI.opposition.land},
+    substitution:{name:'Jardin des Masques',asset:CAT_UI.substitution.land},
+    sonore:{name:'Salle des Échos',asset:CAT_UI.sonore.land}
   };
   function renderLands(){
     var target=document.getElementById("questLands");
     target.innerHTML=CATS.map(function(c){
       var meta=LAND_META[c.id], all=FIGURES.filter(function(f){return f.cat===c.id;});
       var done=all.filter(function(f){return !!progress.quiz[f.id];}).length;
-      return '<button class="quest-land" style="--realm:url(assets/'+c.id+'.webp);background:'+meta.color+'" data-land="'+c.id+'"><span class="land-scene" aria-hidden="true"></span><span class="land-details"><b>'+meta.name+'</b><small>'+done+' / '+all.length+' sorts appris</small></span></button>';
+      return '<button class="quest-land" style="--realm:url('+meta.asset+');" data-land="'+c.id+'"><span class="land-scene" aria-hidden="true"></span><span class="land-details"><b>'+meta.name+'</b><small>'+done+' / '+all.length+' sorts appris</small></span></button>';
     }).join('');
     Array.prototype.forEach.call(target.querySelectorAll('button'),function(b){b.addEventListener('click',function(){currentCat=b.getAttribute('data-land');renderNav();renderGrid();document.getElementById('catHeading').scrollIntoView({behavior:'smooth',block:'start'});});});
   }
